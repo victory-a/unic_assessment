@@ -3,7 +3,10 @@ import React, { PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 import SideBar from './SideBar';
 
-const inter = Inter({ subsets: ['latin'] });
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['100', '300', '400', '600', '700', '900'],
+});
 
 const AppLayout = (props: PropsWithChildren) => {
   return (
