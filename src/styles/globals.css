@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #121212;
+  --foreground: #202020;
+  --primary: #E4E4E4;
+  --secondary: #969696;
 }
 
 body {
@@ -17,4 +19,13 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+
+.red-border {
+  border: 1px solid red;
+}
+
+.green-border {
+  border: 1px solid green;
 }
