@@ -1,0 +1,14 @@
+import React from 'react';
+
+const ShareIcon = () => {
+  return (
+    <svg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+      <path
+        d='M12.5 4.875L8 9H7.25V6.75H5.375C3.92422 6.75 2.75 7.92422 2.75 9.375C2.75 10.5 3.5 11.25 3.5 11.25C3.5 11.25 0.5 10.125 0.5 7.125C0.5 4.84688 2.34688 3 4.625 3H7.25V0.75H8L12.5 4.875Z'
+        fill='#E4E4E4'
+      />
+    </svg>
+  );
+};
+
+export default ShareIcon;

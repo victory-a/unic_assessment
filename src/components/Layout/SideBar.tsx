@@ -38,7 +38,7 @@ interface INavGroup {
 
 function NavButton({ label, href }: { label: string; href: string }) {
   return (
-    <div className='ml-5 block cursor-pointer items-center justify-between rounded-lg text-sm font-normal text-white hover:bg-[#212121]'>
+    <div className='hover:bg-grey-400 ml-5 block cursor-pointer items-center justify-between rounded-lg text-sm font-normal text-white'>
       <Link href={href} className='flex px-2 py-3 text-[15px] text-grey-100'>
         {label}
       </Link>
@@ -64,7 +64,7 @@ function NavGroup({ links = [], name, icon }: INavGroup) {
 
 const SideBar = () => {
   return (
-    <aside>
+    <aside className='red-border'>
       <div>
         <div className='flex h-screen w-[17rem] flex-col border-r border-r-foreground px-5 py-[14px]'>
           <div>
