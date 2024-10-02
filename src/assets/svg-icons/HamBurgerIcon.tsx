@@ -1,8 +1,17 @@
 import React from 'react';
+import { clsMerge } from '@/utils/classname-merge';
+import { IconProps } from './types';
 
-const HamBurgerIcon = () => {
+const HamBurgerIcon = ({ className, height = 24, width = 24 }: IconProps) => {
   return (
-    <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      viewBox='0 0 24 24'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      width={width}
+      height={height}
+      className={clsMerge(className)}
+    >
       <path
         fill-rule='evenodd'
         clip-rule='evenodd'
