@@ -51,15 +51,16 @@ const ListItem = ({ label, link }: { label: string; link: string }) => {
   );
 };
 
-const Header = () => {
+const Header = ({ onOpen }: { onOpen: () => void }) => {
   const [activeTab, setActiveTab] = React.useState(2);
 
   return (
     <>
-      <div className='hidden w-full sm:block'>
-        <header className='sticky h-[3.625rem] w-full border-b border-b-foreground md:h-[7.5rem]'>
+      <div className='hidden w-full md:block'>
+        <header className='sticky h-[3.625rem] w-full border-b border-b-foreground lg:h-[7.5rem]'>
           <div className='flex h-[3.625rem] w-full items-center justify-between px-5'>
-            <div></div>
+            <div>
+            </div>
             <ul className='flex w-full max-w-[21.25rem] items-center justify-between'>
               <ListItem label='Dashboard' link='#!' />
               <ListItem label='My Apps' link='#!' />
@@ -70,7 +71,7 @@ const Header = () => {
             </div>
           </div>
 
-          <div className='hidden items-center justify-between border-t border-t-foreground px-5 py-2.5 md:flex'>
+          <div className='hidden items-center justify-between border-t border-t-foreground px-5 py-2.5 lg:flex'>
             <div className='flex items-center'>
               <h1 className='mr-3'>Front-End Task</h1>
               <button>
@@ -93,8 +94,8 @@ const Header = () => {
         </header>
       </div>
 
-      <div className='flex items-center justify-between px-3 py-4 sm:hidden'>
-        <button>
+      <div className='flex items-center justify-between p-3 md:hidden'>
+        <button onClick={onOpen}>
           <HamBurgerIcon />
         </button>
         <ProfileBadge initials='AP' />

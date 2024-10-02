@@ -64,7 +64,7 @@ function NavGroup({ links = [], name, icon }: INavGroup) {
 
 const SideBar = () => {
   return (
-    <aside className='red-border'>
+    <aside className='bg-background'>
       <div>
         <div className='flex h-screen w-[17rem] flex-col border-r border-r-foreground px-5 py-[14px]'>
           <div>
@@ -93,7 +93,7 @@ const SideBar = () => {
           </div>
 
           <div className='mt-auto flex flex-col'>
-            <div className='mb-6 rounded-[0.462rem] bg-foreground'>
+            <div className='mb-6 hidden rounded-[0.462rem] bg-foreground sm:block'>
               <div className='flex items-center justify-between p-4'>
                 <div>
                   <p className='mb-3 text-sm font-medium'>125,000 tokens left</p>
