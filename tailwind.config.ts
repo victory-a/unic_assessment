@@ -23,6 +23,9 @@ const config: Config = {
         blue: {
           100: '#2AABBC',
         },
+        green: {
+          100: '#15272A',
+        },
       },
     },
   },

@@ -34,7 +34,7 @@ const AppLayout = (props: PropsWithChildren) => {
 
       <div className='w-full'>
         <Header onOpen={() => setDisplayMobileSidebar(true)} />
-        <div className='red-border no-scrollbar chat-body-h mx-auto flex w-full max-w-full flex-col items-center overflow-x-scroll p-2 pb-4 lg:max-w-[60rem]'>
+        <div className='red-border no-scrollbar chat-body-h mx-auto flex w-full max-w-full flex-col overflow-x-scroll p-2 pb-4 lg:max-w-[60rem]'>
           {props.children}
         </div>
       </div>

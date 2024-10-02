@@ -14,7 +14,7 @@ interface ITabHeader {
 
 const TabHeader = ({ tabs, activeTab = 3, setActiveTab }: ITabHeader) => {
   return (
-    <div className='h-[2.625rem] rounded-md bg-foreground'>
+    <div className='h-[2.625rem] rounded-md bg-foreground lg:ml-10'>
       {tabs.map((tab, i) => {
         const isActive = tab.value === activeTab;
         const isFirstItem = i === 0;
