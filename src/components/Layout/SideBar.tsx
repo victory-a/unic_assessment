@@ -77,7 +77,7 @@ const SideBar = () => {
               New Chat
             </button>
           </div>
-          <div className='flex flex-col overflow-y-auto pb-10'>
+          <div className='no-scrollbar flex flex-col overflow-y-auto pb-10'>
             <div className='my-3 ml-2 flex items-center gap-3'>
               <RecentIcon />
               <button className='w-full text-left text-primary'>Recents</button>

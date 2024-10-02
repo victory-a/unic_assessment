@@ -26,14 +26,18 @@ const AppLayout = (props: PropsWithChildren) => {
     <div
       className={clsMerge(
         inter.className,
-        'relative flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
+        'no-scrollbar relative flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
       )}
     >
       {width && width > 768 ? <SideBar /> : null}
       {displayMobileSidebar ? <MobileSidebar onClose={() => setDisplayMobileSidebar(false)} /> : null}
 
-      <Header onOpen={() => setDisplayMobileSidebar(true)} />
-      {props.children}
+      <div className='w-full'>
+        <Header onOpen={() => setDisplayMobileSidebar(true)} />
+        <div className='red-border no-scrollbar chat-body-h mx-auto flex w-full max-w-full flex-col items-center overflow-x-scroll p-2 pb-4 lg:max-w-[60rem]'>
+          {props.children}
+        </div>
+      </div>
     </div>
   );
 };
