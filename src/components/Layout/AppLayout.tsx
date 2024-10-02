@@ -32,9 +32,9 @@ const AppLayout = (props: PropsWithChildren) => {
       {width && width > 768 ? <SideBar /> : null}
       {displayMobileSidebar ? <MobileSidebar onClose={() => setDisplayMobileSidebar(false)} /> : null}
 
-      <div className='w-full'>
+      <div className='w-full px-4'>
         <Header onOpen={() => setDisplayMobileSidebar(true)} />
-        <div className='red-border no-scrollbar chat-body-h mx-auto flex w-full max-w-full flex-col overflow-x-scroll p-2 pb-4 lg:max-w-[60rem]'>
+        <div className='no-scrollbar chat-body-h relative mx-auto flex w-full max-w-full flex-col overflow-x-scroll pb-4 lg:max-w-[60rem]'>
           {props.children}
         </div>
       </div>
