@@ -31,7 +31,15 @@ const ScrapingModal = ({
 }: IScrapingModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
-      <div className='bg-grey-1000 w-[90%] max-w-[35.75rem] rounded-t-md'>
+      <div className='bg-grey-1000 relative w-[90%] max-w-[35.75rem] rounded-t-md pt-2'>
+        <div className='absolute right-1 top-1'>
+          <button
+            onClick={onClose}
+            className='hover:bg-grey-700 relative flex h-7 w-7 items-center justify-center rounded-full'
+          >
+            <CancelIcon />
+          </button>
+        </div>
         <div className='p-6'>
           {scrapingQueue.map((item) => (
             <SingleScrapeProcess
