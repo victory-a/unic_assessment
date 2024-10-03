@@ -6,6 +6,18 @@ import ChatResponse from '@/components/Layout/ChatResponse';
 import PersonaDisplay from '@/components/PersonaDisplay';
 import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
+import { Metadata, Viewport } from 'next';
+
+export const metadata: Metadata = {
+  title: `UNIC Assessment`,
+  description: `UNIC LLM Assessment Victory Asokomeh`,
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+};
 
 export default function Home() {
   const {
@@ -19,7 +31,7 @@ export default function Home() {
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
 
       <AppLayout>
-        <div className='pb-[12.5rem] pt-10 sm:pb-[10rem] md:pt-48'>
+        <div className='pb-7 pt-10 md:pt-48'>
           <PersonaDisplay />
           {/* chat content goes here */}
           <div>
@@ -29,7 +41,7 @@ export default function Home() {
 
           {/* chat content goes here */}
         </div>
-        <div className='fixed bottom-0 w-full bg-background lg:max-w-[60rem]'>
+        <div className='sticky bottom-0 w-full bg-background lg:max-w-[60rem]'>
           <ChatInput onToggleCommandsModal={onToggleCommandsModal} />
         </div>
       </AppLayout>

@@ -6,6 +6,7 @@ import SideBar from './SideBar';
 import Header from './Header';
 import useWindowSize from '@/hooks/useWindowSize';
 import MobileSidebar from './MobileSidebar';
+import Head from 'next/head';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -23,22 +24,28 @@ const AppLayout = (props: PropsWithChildren) => {
   }, [width]);
 
   return (
-    <div
-      className={clsMerge(
-        inter.className,
-        'no-scrollbar flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
-      )}
-    >
-      {width && width > 768 ? <SideBar /> : null}
-      {displayMobileSidebar ? <MobileSidebar onClose={() => setDisplayMobileSidebar(false)} /> : null}
+    <>
+      <Head>
+        <title>UNIC Assessment</title>
+        <meta name='description' content='UNIC Frontend Assessment Victory Asokomeh' />
+      </Head>
+      <div
+        className={clsMerge(
+          inter.className,
+          'no-scrollbar flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
+        )}
+      >
+        {width && width > 768 ? <SideBar /> : null}
+        {displayMobileSidebar ? <MobileSidebar onClose={() => setDisplayMobileSidebar(false)} /> : null}
 
-      <div className='w-full px-4'>
-        <Header onOpen={() => setDisplayMobileSidebar(true)} />
-        <div className='no-scrollbar chat-body-h relative mx-auto flex w-full max-w-full flex-col overflow-x-scroll pb-4 lg:max-w-[60rem]'>
-          {props.children}
+        <div className='w-full px-4'>
+          <Header onOpen={() => setDisplayMobileSidebar(true)} />
+          <div className='no-scrollbar chat-body-h relative mx-auto flex w-full max-w-full flex-col overflow-x-scroll lg:max-w-[60rem]'>
+            {props.children}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
