@@ -15,7 +15,7 @@ interface ICommandsModal {
 const CommandsModal = ({ isOpen, onClose }: ICommandsModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
-      <div className='w-[90%] max-w-[35.75rem] rounded-md bg-foreground'>
+      <div className='w-full min-w-[350px] rounded-md bg-foreground sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>
         <div className='flex items-center justify-between border-b border-b-grey-400 px-4 py-3'>
           <div className='flex items-center gap-2'>
             <CommandIcon />

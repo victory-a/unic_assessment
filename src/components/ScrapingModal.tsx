@@ -31,7 +31,7 @@ const ScrapingModal = ({
 }: IScrapingModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
-      <div className='bg-grey-1000 relative w-[90%] max-w-[35.75rem] rounded-t-md pt-2'>
+      <div className='bg-grey-1000 relative w-full min-w-[350px] rounded-md rounded-t-md bg-foreground pt-2 sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>
         <div className='absolute right-1 top-1'>
           <button
             onClick={onClose}
