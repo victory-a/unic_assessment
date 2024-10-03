@@ -19,13 +19,16 @@ const ChatInput = () => {
 
   React.useEffect(() => {
     adjustHeight();
+
+    if (textareaRef.current) {
+      textareaRef.current.focus();
+    }
   }, []);
 
   return (
     <div>
       <form className='input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
         <textarea
-          autoFocus
           name='query'
           ref={textareaRef}
           className='placeholder:text-grey-600 mt-3 max-h-[13rem] w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm'
