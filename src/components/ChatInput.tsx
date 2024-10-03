@@ -6,7 +6,11 @@ import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
 import UserIcon from '@/assets/svg-icons/UserIcon';
 import PlusIcon from '@/assets/svg-icons/PlusIcon';
 
-const ChatInput = () => {
+interface IChatInput {
+  onToggleCommandsModal: () => void;
+}
+
+const ChatInput = ({ onToggleCommandsModal }: IChatInput) => {
   const [value, setValue] = React.useState('');
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -49,7 +53,7 @@ const ChatInput = () => {
         </div>
       </form>
       <div className='mb-4 flex flex-wrap gap-x-5 gap-y-1.5'>
-        <ActionButton label='Commands' icon={<CommandIcon />} />
+        <ActionButton label='Commands' icon={<CommandIcon />} handleClick={onToggleCommandsModal} />
         <ActionButton label='Prompts' icon={<QuoteIcon />} disabled={true} />
         <ActionButton label='Personas' icon={<UserIcon />} disabled />
         <ActionButton label='Add' icon={<PlusIcon width={14.62} height={14.62} fill='#fff' />} disabled />
