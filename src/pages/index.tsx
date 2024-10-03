@@ -27,7 +27,7 @@ export default function Home() {
     onToggle: onToggleCommandsModal,
   } = useDisclosure();
 
-  const { isOpen: isScrapingModalOpen, onClose: onCloseScrapingModal } = useDisclosure({ isOpen: true });
+  const { isOpen: isScrapingModalOpen, onClose: onCloseScrapingModal } = useDisclosure();
 
   const cancelOne = (id: string) => {
     console.log({ 'cancel scrape': id });
