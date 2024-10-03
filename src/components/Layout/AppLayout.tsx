@@ -26,7 +26,7 @@ const AppLayout = (props: PropsWithChildren) => {
     <div
       className={clsMerge(
         inter.className,
-        'no-scrollbar relative flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
+        'no-scrollbar flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
       )}
     >
       {width && width > 768 ? <SideBar /> : null}

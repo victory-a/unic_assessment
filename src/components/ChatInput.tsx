@@ -45,9 +45,9 @@ const ChatInput = () => {
           </button>
         </div>
       </form>
-      <div className='mb-4 flex flex-wrap gap-x-[1.75rem] gap-y-1.5'>
+      <div className='mb-4 flex flex-wrap gap-x-5 gap-y-1.5'>
         <ActionButton label='Commands' icon={<CommandIcon />} />
-        <ActionButton label='Prompts' icon={<QuoteIcon />} disabled />
+        <ActionButton label='Prompts' icon={<QuoteIcon />} disabled={true} />
         <ActionButton label='Personas' icon={<UserIcon />} disabled />
         <ActionButton label='Add' icon={<PlusIcon width={14.62} height={14.62} fill='#fff' />} disabled />
       </div>

@@ -11,7 +11,7 @@ const ActionButton = ({ handleClick = () => {}, icon, label, disabled = false }:
   return (
     <button
       onClick={handleClick}
-      className='flex items-center gap-2 rounded-lg p-2 hover:bg-grey-400 disabled:bg-transparent'
+      className='flex items-center gap-2 rounded-lg p-2 text-sm font-medium text-white hover:bg-grey-400 disabled:bg-transparent'
       type='button'
       disabled={disabled}
     >

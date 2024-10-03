@@ -5,7 +5,7 @@ import React from 'react';
 
 const ActionBar = () => {
   return (
-    <div className='mt-[1.5rem] flex h-9 w-[6.75rem] items-center justify-evenly gap-1 rounded-md bg-foreground'>
+    <div className='mt-3 flex h-9 w-[6.75rem] items-center justify-evenly gap-1 rounded-md bg-foreground'>
       <button>
         <CopyIcon />
       </button>
