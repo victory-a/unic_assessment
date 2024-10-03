@@ -7,6 +7,7 @@ import PersonaDisplay from '@/components/PersonaDisplay';
 import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
 import { Metadata, Viewport } from 'next';
+import ScrapingModal from '@/components/ScrapingModal';
 
 export const metadata: Metadata = {
   title: `UNIC Assessment`,
@@ -26,9 +27,28 @@ export default function Home() {
     onToggle: onToggleCommandsModal,
   } = useDisclosure();
 
+  const { isOpen: isScrapingModalOpen, onClose: onCloseScrapingModal } = useDisclosure({ isOpen: true });
+
+  const cancelOne = (id: string) => {
+    console.log({ 'cancel scrape': id });
+    onCloseScrapingModal;
+  };
+
+  const cancelAll = () => {
+    onCloseScrapingModal();
+  };
+
   return (
     <>
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
+      {isScrapingModalOpen ? (
+        <ScrapingModal
+          isOpen={isScrapingModalOpen}
+          onClose={onCloseScrapingModal}
+          handleCancelOne={cancelOne}
+          handleCancelAll={cancelAll}
+        />
+      ) : null}
 
       <AppLayout>
         <div className='pb-7 pt-10 md:pt-48'>

@@ -1,9 +1,11 @@
 import React from 'react';
+
 import Dialog from '@/components/Dialog';
-import CommandIcon from '@/assets/svg-icons/CommandIcon';
-import CloseIcon from '@/assets/svg-icons/CloseIcon';
 import URLScrapeToggle from './UrlScrapeToggle';
 import WebSearchToggle from './WebSearchToggle';
+
+import CommandIcon from '@/assets/svg-icons/CommandIcon';
+import CancelIcon from '@/assets/svg-icons/CancelIcon';
 
 interface ICommandsModal {
   isOpen: boolean;
@@ -19,8 +21,11 @@ const CommandsModal = ({ isOpen, onClose }: ICommandsModal) => {
             <CommandIcon />
             <h3 className='text-sm font-medium text-white'>Commands</h3>
           </div>
-          <button onClick={onClose}>
-            <CloseIcon width={23} height={23} />
+          <button
+            onClick={onClose}
+            className='hover:bg-grey-700 relative flex h-7 w-7 items-center justify-center rounded-full'
+          >
+            <CancelIcon />
           </button>
         </div>
         <div className='flex flex-col gap-2 p-4'>
