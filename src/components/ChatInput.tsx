@@ -5,6 +5,7 @@ import CommandIcon from '@/assets/svg-icons/CommandIcon';
 import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
 import UserIcon from '@/assets/svg-icons/UserIcon';
 import PlusIcon from '@/assets/svg-icons/PlusIcon';
+import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
 
 interface IChatInput {
   onToggleCommandsModal: () => void;
@@ -57,6 +58,11 @@ const ChatInput = ({ onToggleCommandsModal }: IChatInput) => {
         <ActionButton label='Prompts' icon={<QuoteIcon />} disabled={true} />
         <ActionButton label='Personas' icon={<UserIcon />} disabled />
         <ActionButton label='Add' icon={<PlusIcon width={14.62} height={14.62} fill='#fff' />} disabled />
+
+        <div className='ml-auto flex items-center gap-3'>
+          <p className='text-grey-600 text-[0.8125rem]'>32/618</p>
+          <HalfCircularProgress />
+        </div>
       </div>
     </div>
   );

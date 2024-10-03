@@ -25,3 +25,25 @@ const ProgressIcon = ({ className, height = 27, width = 26 }: IconProps) => {
 };
 
 export default ProgressIcon;
+
+export const HalfCircularProgress = ({ className, height = 22, width = 22 }: IconProps) => {
+  return (
+    <svg
+      viewBox='0 0 22 22'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      width={width}
+      height={height}
+      className={clsMerge(className)}
+    >
+      <path
+        d='M22 11C22 17.0751 17.0751 22 11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0C17.0751 0 22 4.92487 22 11ZM3.5 11C3.5 15.1421 6.85786 18.5 11 18.5C15.1421 18.5 18.5 15.1421 18.5 11C18.5 6.85786 15.1421 3.5 11 3.5C6.85786 3.5 3.5 6.85786 3.5 11Z'
+        fill='#202020'
+      />
+      <path
+        d='M11 0C12.1532 1.37519e-08 13.2992 0.181341 14.3961 0.537379L13.3155 3.86639C12.5677 3.62364 11.7863 3.5 11 3.5V0Z'
+        fill='#D9D9D9'
+      />
+    </svg>
+  );
+};
