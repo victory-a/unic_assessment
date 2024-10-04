@@ -2,7 +2,7 @@ import React from 'react';
 import ChatInput from '@/components/ChatInput';
 import ChatQuestion from '@/components/ChatQuestion';
 import AppLayout from '@/components/Layout/AppLayout';
-import ChatResponse from '@/components/Layout/ChatResponse';
+import ChatResponse from '@/components/ChatResponse';
 import PersonaDisplay from '@/components/PersonaDisplay';
 import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
@@ -63,7 +63,7 @@ export default function Home() {
       ) : null}
 
       <AppLayout>
-        <div className='pb-56 pt-10 md:pb-4 md:pt-48'>
+        <div className='pb-20 pt-10 md:pb-4 md:pt-48'>
           <PersonaDisplay />
 
           {messages.map((message, index) => {

@@ -34,9 +34,10 @@ const URLScrapeToggle = () => {
 
       <div className='flex items-center justify-between gap-8'>
         <input
+          autoFocus
           type='text'
           placeholder='Enter URL here...'
-          className='placeholder:text-grey-600 w-full bg-background text-[15px] outline-none placeholder:text-[15px]'
+          className='w-full bg-background text-[15px] outline-none placeholder:text-[15px] placeholder:text-grey-600'
         />
         <div className='flex gap-2'>
           <button

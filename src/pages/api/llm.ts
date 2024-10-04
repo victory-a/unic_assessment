@@ -1,7 +1,7 @@
 import { HfInference } from '@huggingface/inference';
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const inference = new HfInference(process.env.HUGGING_FACE_API_KEY); // Replace with your actual token
+const inference = new HfInference(process.env.HUGGING_FACE_API_KEY);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
