@@ -23,15 +23,15 @@ const useFetchChat = () => {
     }
   }, []);
 
-  const handleSend = async () => {
-    if (!value.trim()) return;
+  const handleSend = async (input: string) => {
+    if (!input.trim()) return;
 
     setIsLoading(true);
-    const message = { question: value, response: '', uuid: uuidv4() };
+    const message = { question: input, response: '', uuid: uuidv4() };
 
     abortControllerRef.current = new AbortController();
     const payload = {
-      messages: [{ role: 'user', content: value }],
+      messages: [{ role: 'user', content: input }],
     };
 
     try {

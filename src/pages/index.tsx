@@ -1,5 +1,6 @@
 import React from 'react';
 import { Metadata, Viewport } from 'next';
+import { toast } from 'react-toastify';
 
 import useDisclosure from '@/hooks/useDisclosure';
 import useFetchChat from '@/hooks/useFetchChat';
@@ -11,6 +12,8 @@ import ChatResponse from '@/components/ChatResponse';
 import PersonaDisplay from '@/components/PersonaDisplay';
 import CommandsModal from '@/components/CommandsModal';
 import ScrapingModal from '@/components/ScrapingModal';
+
+import useScrapeUrl from '@/hooks/useScrapeUrl';
 
 export const metadata: Metadata = {
   title: `UNIC Assessment`,
@@ -51,6 +54,23 @@ export default function Home() {
     }
   }, [messages.length]);
 
+  const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: value });
+
+  const handleSubmit = async () => {
+    if (isScrapingNeeded) {
+      try {
+        const finalText = await scrapeUrls();
+
+        handleSend(finalText);
+      } catch (error) {
+        toast('Error during scraping process', { type: 'error' });
+        console.error('Error during scraping process:', error);
+      }
+    } else {
+      handleSend(value);
+    }
+  };
+
   return (
     <>
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
@@ -81,7 +101,8 @@ export default function Home() {
             onToggleCommandsModal={onToggleCommandsModal}
             value={value}
             setValue={setValue}
-            handleSend={handleSend}
+            // handleSend={handleSend}
+            handleSend={handleSubmit}
             handleStop={handleStop}
             isLoading={isLoading}
           />
