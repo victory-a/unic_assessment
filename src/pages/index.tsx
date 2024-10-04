@@ -1,14 +1,16 @@
 import React from 'react';
+import { Metadata, Viewport } from 'next';
+
+import useDisclosure from '@/hooks/useDisclosure';
+import useFetchChat from '@/hooks/useFetchChat';
+
 import ChatInput from '@/components/ChatInput';
 import ChatQuestion from '@/components/ChatQuestion';
 import AppLayout from '@/components/Layout/AppLayout';
 import ChatResponse from '@/components/ChatResponse';
 import PersonaDisplay from '@/components/PersonaDisplay';
-import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
-import { Metadata, Viewport } from 'next';
 import ScrapingModal from '@/components/ScrapingModal';
-import useFetchChat from '@/hooks/useFetchChat';
 
 export const metadata: Metadata = {
   title: `UNIC Assessment`,
