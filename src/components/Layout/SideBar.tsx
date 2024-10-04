@@ -38,7 +38,7 @@ interface INavGroup {
 
 function NavButton({ label, href }: { label: string; href: string }) {
   return (
-    <div className='hover:bg-grey-400 ml-5 block cursor-pointer items-center justify-between rounded-lg text-sm font-normal text-white'>
+    <div className='ml-5 block cursor-pointer items-center justify-between rounded-lg text-sm font-normal text-white hover:bg-grey-400'>
       <Link href={href} className='flex px-2 py-3 text-[15px] text-grey-100'>
         {label}
       </Link>
@@ -63,6 +63,11 @@ function NavGroup({ links = [], name, icon }: INavGroup) {
 }
 
 const SideBar = () => {
+  function clearHistory() {
+    localStorage.removeItem('chatMessages');
+    window.location.reload();
+  }
+
   return (
     <aside className='bg-background'>
       <div>
@@ -72,7 +77,10 @@ const SideBar = () => {
               <Image priority src={logo} alt='UNIC logo' />
             </Link>
 
-            <button className='text-grey-200 mb-3 flex w-full items-center gap-x-[0.625rem] rounded-[6.25rem] bg-blue-100 p-4 text-left text-sm font-semibold'>
+            <button
+              onClick={clearHistory}
+              className='mb-3 flex w-full items-center gap-x-[0.625rem] rounded-[6.25rem] bg-blue-100 p-4 text-left text-sm font-semibold text-grey-200'
+            >
               <PlusIcon />
               New Chat
             </button>
@@ -97,12 +105,12 @@ const SideBar = () => {
               <div className='flex items-center justify-between p-4'>
                 <div>
                   <p className='mb-3 text-sm font-medium'>125,000 tokens left</p>
-                  <p className='text-grey-300 text-xs font-medium'>~145,000 words</p>
+                  <p className='text-xs font-medium text-grey-300'>~145,000 words</p>
                 </div>
                 <ProgressIcon />
               </div>
-              <div className='bg-grey-400 rounded-[0.462rem] rounded-t-none p-4'>
-                <p className='text-grey-500 text-xs font-medium'>See My Plan</p>
+              <div className='rounded-[0.462rem] rounded-t-none bg-grey-400 p-4'>
+                <p className='text-xs font-medium text-grey-500'>See My Plan</p>
               </div>
             </div>
 
