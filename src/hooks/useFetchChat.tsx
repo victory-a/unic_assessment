@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { toast } from 'react-toastify';
 
 export interface IMessage {
   question: string;
@@ -51,7 +52,9 @@ const useFetchChat = () => {
     } catch (error) {
       if (axios.isCancel(error)) {
         console.error('Request canceled', error.message);
+        toast('Request canceled', { type: 'error' });
       } else {
+        toast('Error sending message', { type: 'error' });
         console.error('Error sending message:', error);
       }
     } finally {

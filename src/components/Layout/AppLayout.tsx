@@ -7,6 +7,8 @@ import Header from './Header';
 import useWindowSize from '@/hooks/useWindowSize';
 import MobileSidebar from './MobileSidebar';
 import Head from 'next/head';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -45,6 +47,7 @@ const AppLayout = (props: PropsWithChildren) => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </>
   );
 };

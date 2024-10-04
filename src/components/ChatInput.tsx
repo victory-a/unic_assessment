@@ -6,6 +6,7 @@ import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
 import UserIcon from '@/assets/svg-icons/UserIcon';
 import PlusIcon from '@/assets/svg-icons/PlusIcon';
 import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
+import Spinner from './Spinner';
 
 interface IChatInput {
   onToggleCommandsModal: () => void;
@@ -51,13 +52,11 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
 
         <div className='mx-2 flex items-center text-nowrap rounded-sm p-2 text-grey-700 disabled:opacity-40'>
           <span className='mr-3 text-sm'>⌘↵ Send</span>
-          <button
-            className='flex h-[2.3rem] w-[2.3rem] cursor-pointer items-center justify-center rounded-full p-1 hover:bg-green-100 disabled:bg-transparent disabled:opacity-40'
-            disabled={!value || isLoading}
-            onClick={handleSend}
-          >
-            <PaperPlaneIcon />
-          </button>
+          {isLoading ? (
+            <StopButton handleClick={handleStop} value={value} isLoading={isLoading} />
+          ) : (
+            <SendButton handleClick={handleSend} value={value} isLoading={isLoading} />
+          )}
         </div>
       </div>
       <div className='mb-4 flex flex-wrap gap-x-5 gap-y-1.5'>
@@ -76,3 +75,34 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
 };
 
 export default ChatInput;
+
+interface IConfirmButton {
+  value: string;
+  isLoading: boolean;
+  handleClick: () => void;
+}
+
+function SendButton({ value, isLoading, handleClick }: IConfirmButton) {
+  return (
+    <button
+      className='flex h-[2.3rem] w-[2.3rem] cursor-pointer items-center justify-center rounded-full p-1 hover:bg-green-100 disabled:cursor-not-allowed disabled:bg-transparent disabled:opacity-40'
+      disabled={!value || isLoading}
+      onClick={handleClick}
+    >
+      <PaperPlaneIcon />
+    </button>
+  );
+}
+
+function StopButton({ value, handleClick }: IConfirmButton) {
+  return (
+    <button
+      className='flex cursor-pointer items-center justify-center gap-2 rounded-md border border-white px-2 py-[4px] text-white hover:border-red-400 disabled:cursor-not-allowed'
+      disabled={!value}
+      onClick={handleClick}
+    >
+      Stop
+      <Spinner />
+    </button>
+  );
+}
