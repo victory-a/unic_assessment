@@ -13,9 +13,10 @@ interface IChatInput {
   setValue: (val: string) => void;
   handleSend: () => void;
   handleStop: () => void;
+  isLoading: boolean;
 }
 
-const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleStop }: IChatInput) => {
+const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleStop, isLoading }: IChatInput) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const adjustHeight = () => {
@@ -42,6 +43,7 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
           className='mt-3 max-h-[13rem] w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'
           placeholder="Type '/' for quick access to the command menu. Use '||' to enter multiple prompts."
           onInput={adjustHeight}
+          value={value}
           onChange={(e) => setValue(e.target.value)}
           style={{ maxHeight: '12rem', overflowY: 'scroll' }}
         ></textarea>
@@ -50,7 +52,7 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
           <span className='mr-3 text-sm'>⌘↵ Send</span>
           <button
             className='flex h-[2.3rem] w-[2.3rem] cursor-pointer items-center justify-center rounded-full p-1 hover:bg-green-100 disabled:bg-transparent disabled:opacity-40'
-            disabled={!value}
+            disabled={!value || isLoading}
             onClick={handleSend}
           >
             <PaperPlaneIcon />

@@ -55,13 +55,13 @@ export default function Home() {
       ) : null}
 
       <AppLayout>
-        <div className='pb-7 pt-10 md:pt-48'>
+        <div className='pb-56 pt-10 md:pb-4 md:pt-48'>
           <PersonaDisplay />
 
           {messages.map((message) => {
             return (
               <div key={message.uuid}>
-                <ChatQuestion question={message.question} />
+                <ChatQuestion question={message.question} onEdit={() => handleEdit(message.uuid)} />
                 <ChatResponse response={message.response} />
               </div>
             );
@@ -74,6 +74,7 @@ export default function Home() {
             setValue={setValue}
             handleSend={handleSend}
             handleStop={handleStop}
+            isLoading={isLoading}
           />
         </div>
       </AppLayout>
