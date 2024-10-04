@@ -4,6 +4,7 @@ import { clsMerge } from '@/utils/classname-merge';
 import Dialog from '@/components/Dialog';
 import CancelIcon, { CancelIconOutline } from '@/assets/svg-icons/CancelIcon';
 import CompleteIcon from '@/assets/svg-icons/CompleteIcon';
+import { defaultValues } from '@/context/ActionModalsContext';
 
 interface IScrapingModal {
   isOpen: boolean;

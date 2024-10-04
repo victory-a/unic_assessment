@@ -9,7 +9,7 @@ import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
 import Spinner from './Spinner';
 
 interface IChatInput {
-  onToggleCommandsModal: () => void;
+  openCommandsModal: () => void;
   value: string;
   setValue: (val: string) => void;
   handleSend: () => void;
@@ -17,7 +17,7 @@ interface IChatInput {
   isLoading: boolean;
 }
 
-const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleStop, isLoading }: IChatInput) => {
+const ChatInput = ({ openCommandsModal, value, setValue, handleSend, handleStop, isLoading }: IChatInput) => {
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const adjustHeight = () => {
@@ -71,7 +71,7 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
         </div>
       </div>
       <div className='mb-4 flex flex-wrap gap-x-5 gap-y-1.5'>
-        <ActionButton label='Commands' icon={<CommandIcon />} handleClick={onToggleCommandsModal} />
+        <ActionButton label='Commands' icon={<CommandIcon />} handleClick={openCommandsModal} />
         <ActionButton label='Prompts' icon={<QuoteIcon />} disabled={true} />
         <ActionButton label='Personas' icon={<UserIcon />} disabled />
         <ActionButton label='Add' icon={<PlusIcon width={14.62} height={14.62} fill='#fff' />} disabled />

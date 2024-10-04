@@ -47,19 +47,30 @@ export default function Home() {
   };
 
   const {
-    isCommandsModalOpen,
-    onCloseCommandsModal,
-    onToggleCommandsModal,
-    isScrapingModalOpen,
-    onCloseScrapingModal,
+    currentModal,
+    closeModal,
+    setCurrentModal,
     cancelAll,
+    scrapingFormValues,
+    webSearchFormValues,
+    updateFormValues,
+    resetFormValues,
   } = useActionModalsContext();
+
+  const isCommandsModalOpen = currentModal === 'INSERT_COMMAND';
+  const isScrapingModalOpen = currentModal === 'SEARCH_AND_SCRAPE';
 
   return (
     <>
-      {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
+      {isCommandsModalOpen ? (
+        <CommandsModal
+          isOpen={isCommandsModalOpen}
+          onClose={closeModal}
+          {...{ updateFormValues, scrapingFormValues, webSearchFormValues, resetFormValues }}
+        />
+      ) : null}
       {isScrapingModalOpen ? (
-        <ScrapingModal isOpen={isScraping} onClose={onCloseScrapingModal} handleCancelAll={cancelAll} />
+        <ScrapingModal isOpen={isScraping} onClose={closeModal} handleCancelAll={cancelAll} />
       ) : null}
 
       <AppLayout>
@@ -69,7 +80,7 @@ export default function Home() {
         </div>
         <div className='fixed bottom-0 w-full bg-background lg:max-w-[60rem]'>
           <ChatInput
-            onToggleCommandsModal={onToggleCommandsModal}
+            openCommandsModal={() => setCurrentModal('INSERT_COMMAND')}
             value={value}
             setValue={setValue}
             handleSend={handleSubmit}
