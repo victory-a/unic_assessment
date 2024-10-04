@@ -8,7 +8,7 @@ import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
 import { Metadata, Viewport } from 'next';
 import ScrapingModal from '@/components/ScrapingModal';
-import useFetchChat, { IMessage } from '@/hooks/useFetchChat';
+import useFetchChat from '@/hooks/useFetchChat';
 
 export const metadata: Metadata = {
   title: `UNIC Assessment`,
@@ -42,6 +42,14 @@ export default function Home() {
     onCloseScrapingModal();
   };
 
+  // Scroll the last message into view when messages array changes
+  const lastMessageRef = React.useRef<HTMLDivElement | null>(null);
+  React.useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages.length]);
+
   return (
     <>
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
@@ -58,9 +66,9 @@ export default function Home() {
         <div className='pb-56 pt-10 md:pb-4 md:pt-48'>
           <PersonaDisplay />
 
-          {messages.map((message) => {
+          {messages.map((message, index) => {
             return (
-              <div key={message.uuid}>
+              <div key={message.uuid} ref={index === messages.length - 1 ? lastMessageRef : null}>
                 <ChatQuestion question={message.question} onEdit={() => handleEdit(message.uuid)} />
                 <ChatResponse response={message.response} />
               </div>

@@ -46,6 +46,7 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
           value={value}
           onChange={(e) => setValue(e.target.value)}
           style={{ maxHeight: '12rem', overflowY: 'scroll' }}
+          disabled={isLoading}
         ></textarea>
 
         <div className='mx-2 flex items-center text-nowrap rounded-sm p-2 text-grey-700 disabled:opacity-40'>
