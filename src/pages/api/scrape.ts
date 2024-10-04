@@ -3,8 +3,6 @@ import scrapeWebsite from '@/utils/scraper';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { url } = req.body;
-  console.log(url);
-  
 
   if (!url) {
     return res.status(400).json({ error: 'URL is required' });

@@ -23,14 +23,3 @@ async function scrapeWebsite(url) {
   }
 }
 export default scrapeWebsite;
-
-// Example usage
-// const websiteUrl = 'https://example.com';
-// scrapeWebsite(websiteUrl).then((text) => {
-//   if (text) {
-//     console.log('Scraped content:');
-//     console.log(text);
-//   } else {
-//     console.log('Failed to scrape website.');
-//   }
-// });

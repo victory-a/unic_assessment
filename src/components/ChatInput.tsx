@@ -27,6 +27,17 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
     }
   };
 
+  const resetHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = ''; // Reset the inline height property
+    }
+  };
+
+  function triggerSend() {
+    resetHeight();
+    handleSend();
+  }
+
   React.useEffect(() => {
     adjustHeight();
 
@@ -39,9 +50,9 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
     <div>
       <div className='input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
         <textarea
-          name='query'
+          rows={3}
           ref={textareaRef}
-          className='mt-3 max-h-[13rem] w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'
+          className='no-scrollbar mt-3 min-h-9 w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'
           placeholder="Type '/' for quick access to the command menu. Use '||' to enter multiple prompts."
           onInput={adjustHeight}
           value={value}
@@ -55,7 +66,7 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
           {isLoading ? (
             <StopButton handleClick={handleStop} value={value} isLoading={isLoading} />
           ) : (
-            <SendButton handleClick={handleSend} value={value} isLoading={isLoading} />
+            <SendButton handleClick={triggerSend} value={value} isLoading={isLoading} />
           )}
         </div>
       </div>

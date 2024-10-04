@@ -76,7 +76,7 @@ export default function Home() {
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
       {isScrapingModalOpen ? (
         <ScrapingModal
-          isOpen={isScrapingModalOpen}
+          isOpen={isScraping}
           onClose={onCloseScrapingModal}
           handleCancelOne={cancelOne}
           handleCancelAll={cancelAll}
@@ -84,7 +84,7 @@ export default function Home() {
       ) : null}
 
       <AppLayout>
-        <div className='pb-48 pt-10 sm:pb-44 md:pt-48'>
+        <div className='pb-60 pt-10 sm:pb-44 md:pt-48'>
           <PersonaDisplay />
 
           {messages.map((message, index) => {

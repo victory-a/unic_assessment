@@ -62,7 +62,7 @@ const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
     return finalText;
   }, [inputText, urlSIncluded]);
 
-  return { isScrapingNeeded, scrapeUrls, isScraping, scrapeError };
+  return { isScrapingNeeded, scrapeUrls, isScraping, scrapeError, setIsScraping };
 };
 
 export default useScrapeUrl;
