@@ -34,10 +34,9 @@ const WebSearchToggle = () => {
 
       <div className='flex items-center justify-between gap-8'>
         <input
-          autoFocus
           type='text'
           placeholder='Insert Search term here...'
-          className='placeholder:text-grey-600 w-full bg-background text-[15px] outline-none placeholder:text-[15px]'
+          className='w-full bg-background text-[15px] outline-none placeholder:text-[15px] placeholder:text-grey-600'
         />
         <div className='flex gap-2'>
           <button

@@ -2,12 +2,13 @@ import React from 'react';
 import ChatInput from '@/components/ChatInput';
 import ChatQuestion from '@/components/ChatQuestion';
 import AppLayout from '@/components/Layout/AppLayout';
-import ChatResponse from '@/components/Layout/ChatResponse';
+import ChatResponse from '@/components/ChatResponse';
 import PersonaDisplay from '@/components/PersonaDisplay';
 import useDisclosure from '@/hooks/useDisclosure';
 import CommandsModal from '@/components/CommandsModal';
 import { Metadata, Viewport } from 'next';
 import ScrapingModal from '@/components/ScrapingModal';
+import useFetchChat from '@/hooks/useFetchChat';
 
 export const metadata: Metadata = {
   title: `UNIC Assessment`,
@@ -21,6 +22,9 @@ export const viewport: Viewport = {
 };
 
 export default function Home() {
+  const { isLoading, value, messages, editingUuid, setValue, handleSend, handleEdit, handleSaveEdit, handleStop } =
+    useFetchChat();
+
   const {
     isOpen: isCommandsModalOpen,
     onClose: onCloseCommandsModal,
@@ -38,6 +42,14 @@ export default function Home() {
     onCloseScrapingModal();
   };
 
+  // Scroll the last message into view when messages array changes
+  const lastMessageRef = React.useRef<HTMLDivElement | null>(null);
+  React.useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages.length]);
+
   return (
     <>
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={onCloseCommandsModal} /> : null}
@@ -51,18 +63,27 @@ export default function Home() {
       ) : null}
 
       <AppLayout>
-        <div className='pb-7 pt-10 md:pt-48'>
+        <div className='pb-48 pt-10 sm:pb-44 md:pt-48'>
           <PersonaDisplay />
-          {/* chat content goes here */}
-          <div>
-            <ChatQuestion />
-            <ChatResponse />
-          </div>
 
-          {/* chat content goes here */}
+          {messages.map((message, index) => {
+            return (
+              <div key={message.uuid} ref={index === messages.length - 1 ? lastMessageRef : null}>
+                <ChatQuestion question={message.question} onEdit={() => handleEdit(message.uuid)} />
+                <ChatResponse response={message.response} />
+              </div>
+            );
+          })}
         </div>
-        <div className='sticky bottom-0 w-full bg-background lg:max-w-[60rem]'>
-          <ChatInput onToggleCommandsModal={onToggleCommandsModal} />
+        <div className='fixed bottom-0 w-full bg-background lg:max-w-[60rem]'>
+          <ChatInput
+            onToggleCommandsModal={onToggleCommandsModal}
+            value={value}
+            setValue={setValue}
+            handleSend={handleSend}
+            handleStop={handleStop}
+            isLoading={isLoading}
+          />
         </div>
       </AppLayout>
     </>

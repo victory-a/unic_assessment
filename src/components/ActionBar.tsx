@@ -3,9 +3,20 @@ import DownloadIcon from '@/assets/svg-icons/DownloadIcon';
 import SplitIcon from '@/assets/svg-icons/SplitIcon';
 import React from 'react';
 
-const ActionBar = () => {
+interface IActionBar {
+  edit?: boolean;
+  onEdit?: () => void;
+}
+
+const ActionBar = ({ edit, onEdit = () => {} }: IActionBar) => {
   return (
-    <div className='mt-3 flex h-9 w-[6.75rem] items-center justify-evenly gap-1 rounded-md bg-foreground'>
+    <div className='mt-3 flex h-9 w-[7.5rem] items-center justify-evenly gap-1 rounded-md bg-foreground'>
+      {edit ? (
+        <button onClick={onEdit} className='text-xs hover:text-red-400'>
+          Edit
+        </button>
+      ) : null}
+
       <button>
         <CopyIcon />
       </button>

@@ -23,6 +23,8 @@ async function scrapeWebsite(url) {
   }
 }
 
+export default scrapeWebsite;
+
 // Example usage
 const websiteUrl = 'https://example.com';
 scrapeWebsite(websiteUrl).then((text) => {
