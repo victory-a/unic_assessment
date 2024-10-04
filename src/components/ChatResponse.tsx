@@ -19,7 +19,7 @@ const ChatResponse = ({ response }: { response: string }) => {
                 {children}
               </code>
             ) : (
-              <pre className={`${className || ''} !my-0 ml-2 !py-0 font-medium`} {...props}>
+              <pre className={`${className || ''} !py-0 font-medium`} {...props}>
                 <code className={`language-${match?.[1] || ''}`}>{children}</code>
               </pre>
             );
