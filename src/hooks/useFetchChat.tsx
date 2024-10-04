@@ -48,6 +48,9 @@ const useFetchChat = () => {
         return updatedMessages;
       });
 
+      if (editingUuid) {
+        setEditingUuid(null);
+      }
       setValue('');
     } catch (error) {
       if (axios.isCancel(error)) {
@@ -71,50 +74,6 @@ const useFetchChat = () => {
     }
   };
 
-  const handleSaveEdit = async () => {
-    if (!value.trim()) return;
-
-    setIsLoading(true);
-    abortControllerRef.current = new AbortController();
-
-    try {
-      const response = await axios.post(
-        '/api/llm',
-        {
-          messages: [{ role: 'user', content: value }],
-        },
-        {
-          signal: abortControllerRef.current.signal,
-        },
-      );
-
-      const data = {
-        question: value,
-        response: response.data.content,
-        uuid: uuidv4(),
-      };
-
-      // Update messages with the new LLM response
-      setMessages((prevMessages) => {
-        const updatedMessages = [...prevMessages, data];
-        localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
-        return updatedMessages;
-      });
-
-      setEditingUuid(null);
-      setValue('');
-    } catch (error) {
-      if (axios.isCancel(error)) {
-        console.error('Request canceled', error.message);
-      } else {
-        console.error('Error sending message:', error);
-      }
-    } finally {
-      setIsLoading(false);
-      abortControllerRef.current = null; // Reset the controller
-    }
-  };
-
   const handleStop = () => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort('Request was canceled by the user.');
@@ -129,11 +88,9 @@ const useFetchChat = () => {
     isLoading,
     value,
     messages,
-    editingUuid,
     setValue,
     handleSend,
     handleEdit,
-    handleSaveEdit,
     handleStop,
   };
 };

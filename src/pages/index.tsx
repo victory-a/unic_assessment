@@ -22,8 +22,7 @@ export const viewport: Viewport = {
 };
 
 export default function Home() {
-  const { isLoading, value, messages, editingUuid, setValue, handleSend, handleEdit, handleSaveEdit, handleStop } =
-    useFetchChat();
+  const { isLoading, value, messages, setValue, handleSend, handleEdit, handleStop } = useFetchChat();
 
   const {
     isOpen: isCommandsModalOpen,
