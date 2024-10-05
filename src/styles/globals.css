@@ -75,5 +75,14 @@ body {
 }
 
 .ql-editor {
-  min-height: 100px;
+  min-height: 70px;
+  max-height: 70px;
+  overflow-y: scroll;
+}
+
+@media screen and (min-width: 640px) {
+  .ql-editor {
+    min-height: 130px;
+    max-height: 130px;
+  }
 }

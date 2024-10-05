@@ -60,7 +60,7 @@ export default function Home() {
       ) : null}
 
       <AppLayout>
-        <div className='pb-60 pt-10 sm:pb-44 md:pt-48'>
+        <div className='pb-60 pt-10 sm:pb-44 md:pt-48 green-border'>
           <PersonaDisplay />
           <MessagesView messages={messages} handleEdit={handleEdit} />
         </div>

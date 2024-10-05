@@ -12,7 +12,7 @@ const ActionBar = ({ edit, onEdit = () => {} }: IActionBar) => {
   return (
     <div className='mt-3 flex h-9 w-[7.5rem] items-center justify-evenly gap-1 rounded-md bg-foreground'>
       {edit ? (
-        <button onClick={onEdit} className='text-xs hover:text-red-400'>
+        <button onClick={onEdit} className='text-sm text-red-400'>
           Edit
         </button>
       ) : null}

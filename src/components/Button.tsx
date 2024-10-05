@@ -23,7 +23,7 @@ export function SendButton({ value, isLoading, handleClick }: IConfirmButton) {
 export function StopButton({ value, handleClick }: IConfirmButton) {
   return (
     <button
-      className='flex cursor-pointer items-center justify-center gap-2 rounded-md border border-white px-2 py-[4px] text-white hover:border-red-400 disabled:cursor-not-allowed'
+      className='flex cursor-pointer items-center justify-center gap-2 rounded-md border border-white px-2 py-[4px] text-white disabled:cursor-not-allowed'
       disabled={!value}
       onClick={handleClick}
     >
