@@ -18,7 +18,7 @@ const useToast = () => {
     message,
     variant = 'default',
     duration = 3000,
-    position = { vertical: 'top', horizontal: 'center' },
+    position = { vertical: 'top', horizontal: 'right' },
   }: ToastOptions) => {
     const options: OptionsObject = {
       variant,

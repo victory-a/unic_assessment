@@ -8,14 +8,14 @@ import GlobeIcon from '@/assets/svg-icons/GlobeIcon';
 
 const WebSearchToggle = () => {
   const [isAdvanced, setIsAdvanced] = React.useState(false);
-  
+
   const { showToast } = useToast();
   const { insertCommand, webSearchFormValues: formValues, updateFormValues } = useActionModalsContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SEARCH');
-    showToast({ message: 'Command Inserted' });
+    showToast({ message: 'Command Inserted', variant: 'success' });
   };
 
   return (

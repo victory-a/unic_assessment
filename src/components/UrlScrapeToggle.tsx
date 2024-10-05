@@ -15,7 +15,7 @@ const URLScrapeToggle = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SCRAPE');
-    showToast({ message: 'Command Inserted' });
+    showToast({ message: 'Command Inserted', variant: 'success' });
   };
 
   return (
