@@ -25,10 +25,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const errorMessage = error instanceof Error ? error.message : JSON.stringify(error);
       return res.status(500).json({ message: 'Error communicating with LLM', error: errorMessage });
     }
-  } else if (req.method === 'DELETE') {
-    res.status(200).json({ message: 'Cleanup complete' });
   } else {
-    res.setHeader('Allow', ['POST', 'DELETE']);
+    res.setHeader('Allow', ['POST']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
