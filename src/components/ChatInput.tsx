@@ -1,23 +1,25 @@
-import PaperPlaneIcon from '@/assets/svg-icons/PaperPlaneIcon';
 import React from 'react';
+import { useActionModalsContext } from '@/context/ActionModalsContext';
 import ActionButton from './ActionButton';
-import CommandIcon from '@/assets/svg-icons/CommandIcon';
-import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
-import UserIcon from '@/assets/svg-icons/UserIcon';
-import PlusIcon from '@/assets/svg-icons/PlusIcon';
-import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
 import Spinner from './Spinner';
 
+import UserIcon from '@/assets/svg-icons/UserIcon';
+import PlusIcon from '@/assets/svg-icons/PlusIcon';
+import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
+import CommandIcon from '@/assets/svg-icons/CommandIcon';
+import PaperPlaneIcon from '@/assets/svg-icons/PaperPlaneIcon';
+import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
+
 interface IChatInput {
-  onToggleCommandsModal: () => void;
-  value: string;
-  setValue: (val: string) => void;
+  openCommandsModal: () => void;
   handleSend: () => void;
   handleStop: () => void;
   isLoading: boolean;
 }
 
-const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleStop, isLoading }: IChatInput) => {
+const ChatInput = ({ openCommandsModal, handleSend, handleStop, isLoading }: IChatInput) => {
+  const { value, setValue } = useActionModalsContext();
+
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const adjustHeight = () => {
@@ -26,6 +28,17 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
       textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
     }
   };
+
+  const resetHeight = () => {
+    if (textareaRef.current) {
+      textareaRef.current.style.height = ''; // Reset the inline height property
+    }
+  };
+
+  function triggerSend() {
+    resetHeight();
+    handleSend();
+  }
 
   React.useEffect(() => {
     adjustHeight();
@@ -39,9 +52,10 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
     <div>
       <div className='input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
         <textarea
-          name='query'
+          autoFocus
+          rows={3}
           ref={textareaRef}
-          className='mt-3 max-h-[13rem] w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'
+          className='no-scrollbar mt-3 min-h-9 w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'
           placeholder="Type '/' for quick access to the command menu. Use '||' to enter multiple prompts."
           onInput={adjustHeight}
           value={value}
@@ -55,12 +69,12 @@ const ChatInput = ({ onToggleCommandsModal, value, setValue, handleSend, handleS
           {isLoading ? (
             <StopButton handleClick={handleStop} value={value} isLoading={isLoading} />
           ) : (
-            <SendButton handleClick={handleSend} value={value} isLoading={isLoading} />
+            <SendButton handleClick={triggerSend} value={value} isLoading={isLoading} />
           )}
         </div>
       </div>
       <div className='mb-4 flex flex-wrap gap-x-5 gap-y-1.5'>
-        <ActionButton label='Commands' icon={<CommandIcon />} handleClick={onToggleCommandsModal} />
+        <ActionButton label='Commands' icon={<CommandIcon />} handleClick={openCommandsModal} />
         <ActionButton label='Prompts' icon={<QuoteIcon />} disabled={true} />
         <ActionButton label='Personas' icon={<UserIcon />} disabled />
         <ActionButton label='Add' icon={<PlusIcon width={14.62} height={14.62} fill='#fff' />} disabled />

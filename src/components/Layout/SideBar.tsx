@@ -65,7 +65,7 @@ function NavGroup({ links = [], name, icon }: INavGroup) {
 const SideBar = () => {
   function clearHistory() {
     localStorage.removeItem('chatMessages');
-    window.location.reload();
+    // window.location.reload();
   }
 
   return (

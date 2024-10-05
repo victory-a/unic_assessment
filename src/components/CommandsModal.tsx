@@ -23,7 +23,7 @@ const CommandsModal = ({ isOpen, onClose }: ICommandsModal) => {
           </div>
           <button
             onClick={onClose}
-            className='hover:bg-grey-700 relative flex h-7 w-7 items-center justify-center rounded-full'
+            className='relative flex h-7 w-7 items-center justify-center rounded-full hover:bg-grey-700'
           >
             <CancelIcon />
           </button>

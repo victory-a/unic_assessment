@@ -9,9 +9,8 @@ export interface IMessage {
   uuid: string;
 }
 
-const useFetchChat = () => {
+const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [value, setValue] = useState('');
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
   const [editingUuid, setEditingUuid] = useState<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
@@ -23,15 +22,15 @@ const useFetchChat = () => {
     }
   }, []);
 
-  const handleSend = async () => {
-    if (!value.trim()) return;
+  const handleSend = async (input: string) => {
+    if (!input.trim()) return;
 
     setIsLoading(true);
-    const message = { question: value, response: '', uuid: uuidv4() };
+    const message = { question: input, response: '', uuid: uuidv4() };
 
     abortControllerRef.current = new AbortController();
     const payload = {
-      messages: [{ role: 'user', content: value }],
+      messages: [{ role: 'user', content: input }],
     };
 
     try {
@@ -86,7 +85,6 @@ const useFetchChat = () => {
 
   return {
     isLoading,
-    value,
     messages,
     setValue,
     handleSend,
