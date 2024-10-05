@@ -63,11 +63,6 @@ function NavGroup({ links = [], name, icon }: INavGroup) {
 }
 
 const SideBar = () => {
-  function clearHistory() {
-    localStorage.removeItem('chatMessages');
-    // window.location.reload();
-  }
-
   return (
     <aside className='bg-background'>
       <div>
@@ -77,10 +72,7 @@ const SideBar = () => {
               <Image priority src={logo} alt='UNIC logo' />
             </Link>
 
-            <button
-              onClick={clearHistory}
-              className='mb-3 flex w-full items-center gap-x-[0.625rem] rounded-[6.25rem] bg-blue-100 p-4 text-left text-sm font-semibold text-grey-200'
-            >
+            <button className='mb-3 flex w-full items-center gap-x-[0.625rem] rounded-[6.25rem] bg-blue-100 p-4 text-left text-sm font-semibold text-grey-200'>
               <PlusIcon />
               New Chat
             </button>

@@ -26,13 +26,14 @@ export const viewport: Viewport = {
 };
 
 export default function Home() {
-  const { value, setValue, currentModal, closeModal, setCurrentModal, cancelAll } = useActionModalsContext();
+  const { value, setValue, currentModal, closeModal, setCurrentModal } = useActionModalsContext();
 
   const { isLoading, messages, handleSend, handleEdit, handleStop } = useFetchChat({ setValue });
   const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: value });
 
   const handleSubmit = async () => {
     if (isScrapingNeeded) {
+      setCurrentModal('SEARCH_AND_SCRAPE');
       try {
         const finalText = await scrapeUrls();
 
@@ -40,6 +41,8 @@ export default function Home() {
       } catch (error) {
         toast('Error during scraping process', { type: 'error' });
         console.error('Error during scraping process:', error);
+      } finally {
+        closeModal();
       }
     } else {
       handleSend(value);
@@ -53,7 +56,7 @@ export default function Home() {
     <>
       {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={closeModal} /> : null}
       {isScrapingModalOpen ? (
-        <ScrapingModal isOpen={isScraping} onClose={closeModal} handleCancelAll={cancelAll} />
+        <ScrapingModal isOpen={isScrapingModalOpen} onClose={closeModal} isScraping={isScraping} />
       ) : null}
 
       <AppLayout>
@@ -61,7 +64,7 @@ export default function Home() {
           <PersonaDisplay />
           <MessagesView messages={messages} handleEdit={handleEdit} />
         </div>
-        <div className='fixed bottom-0 w-full bg-background lg:max-w-[60rem]'>
+        <div className='sticky bottom-0 w-full bg-background lg:max-w-[60rem]'>
           <ChatInput
             openCommandsModal={() => setCurrentModal('INSERT_COMMAND')}
             handleSend={handleSubmit}

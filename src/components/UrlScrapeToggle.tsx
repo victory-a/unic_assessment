@@ -1,5 +1,4 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 
 import { clsMerge } from '@/utils/classname-merge';
 import { useActionModalsContext } from '@/context/ActionModalsContext';
@@ -15,7 +14,6 @@ const URLScrapeToggle = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SCRAPE');
-    toast('URL inserted', { type: 'success' });
   };
 
   return (

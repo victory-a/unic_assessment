@@ -13,7 +13,6 @@ const WebSearchToggle = () => {
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SEARCH');
-    toast('URL inserted', { type: 'success' });
   };
 
   return (

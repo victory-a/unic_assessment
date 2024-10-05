@@ -16,7 +16,7 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    const savedMessages = localStorage.getItem('chatMessages');
+    const savedMessages = sessionStorage.getItem('chatMessages');
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
     }
@@ -43,7 +43,7 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages, data];
 
-        localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
+        sessionStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
         return updatedMessages;
       });
 
@@ -77,7 +77,6 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort('Request was canceled by the user.');
       console.error('Request has been stopped.');
-      setValue('');
       setIsLoading(false);
       abortControllerRef.current = null;
     }

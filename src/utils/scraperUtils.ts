@@ -3,13 +3,12 @@ export interface IncludeUrlCommand {
   command: string;
 }
 
-export const urlRegex = /https?:\/\/[^\s]+/
+export const urlRegex = /https?:\/\/[^\s]+/;
 export const checkIncludeUrlCommands = (inputText: string): string[] => {
   const includeUrlCommandRegex =
     /\[include-url:\s*(https?:\/\/[^\s]+)(?:\s+max_execution_time:(\d+))?\s*(filter:(true|false))?\s*(store:(true|false))?\]/g;
 
-  // Convert the matches into an array
-  const matches = Array.from(inputText.matchAll(includeUrlCommandRegex));
+  const matches = Array.from(inputText.matchAll(includeUrlCommandRegex)); // Convert the matches into an array
 
   // Map matches to return the complete command string
   return matches.map((match) => match[0]); // Return the whole matched command
