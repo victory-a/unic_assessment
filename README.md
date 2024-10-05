@@ -9,7 +9,6 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 - Start, stop, and edit LLM interactions
 - Insert special commands (e.g., web scraping, web search)
 - Session persistence
-- Accessible and responsive design
 
 ### Limitations & Trade-offs
 
