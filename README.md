@@ -1,40 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/zeit/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## LLM Wrapper
+## Features 
+- WYSIWYG Editor
+- Markdown and Syntax Highlighting
+- Start, stop, and edit LLM Interaction
+- Insert special commands, ie: Web-scraping and web-search
+- Session persistence
+- Accessibility and Responsive design
+
+### Getting Started
 
 First, run the development server:
+
+node >=18.18.0 is required to run this project 
+
+You can conveniently install this with nvm
+
+```bash
+nvm install v18.18.0
+```
+switch to the newly installed node version
+```bash
+nvm use v18.18.0
+```
+
+replace the `.env.example` with a `.env` file 
+populate the following in the `.env` file 
+`HUGGING_FACE_API_KEY`
+
+Install dependencies
+
+```bash
+yarn
+# or
+npm i
+```
+
+Start project
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<!-- Live [URL](https://github.com/victory-a/unic_assessment/) -->
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+### Possible Improvements
+- Implement a more robust state management a state management library
+- Possibly add authentication with social login
+- Persist history on a database
+- Add automated test
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Limitations - Tradeoffs
+- Character limit is enforced by the LLM model used: I truncated the prompt for webscraping tasks
+- LLM does not natively support rich text: I eliminate html tags from the prompt at the point of calling the llm
