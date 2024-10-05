@@ -1,6 +1,7 @@
 import { useState, useCallback } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
+
+import useToast from './useToast';
 
 import {
   checkIncludeUrlCommands,
@@ -17,6 +18,8 @@ interface IUseScrapeUrl {
 const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
   const [isScraping, setIsScraping] = useState(false);
   const [scrapeError, setScrapeError] = useState<string>('');
+
+  const { showToast } = useToast();
 
   const urlSIncluded = checkIncludeUrlCommands(inputText); // Check if there are include-url commands
 
@@ -46,8 +49,8 @@ const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
         } catch (error) {
           const errorMessage = error instanceof Error ? error.message : 'SRY FAILED TO SCRAPE';
 
-          toast('Error scraping content', { type: 'error' });
-          console.error('Error scraping content:', errorMessage);
+          showToast({ message: 'Failed to scrape content', variant: 'error' });
+          console.error('Failed to scrape content:', errorMessage);
           return 'SRY FAILED TO SCRAPE';
         }
       }),

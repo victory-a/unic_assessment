@@ -1,5 +1,5 @@
 import React from 'react';
-import { toast } from 'react-toastify';
+import useToast from '@/hooks/useToast';
 
 import { clsMerge } from '@/utils/classname-merge';
 import { useActionModalsContext } from '@/context/ActionModalsContext';
@@ -7,15 +7,15 @@ import { useActionModalsContext } from '@/context/ActionModalsContext';
 import LinkShareIcon from '@/assets/svg-icons/LinkShareIcon';
 
 const URLScrapeToggle = () => {
-  const { scrapingFormValues: formValues, updateFormValues } = useActionModalsContext();
   const [isAdvanced, setIsAdvanced] = React.useState(false);
 
-  const { insertCommand } = useActionModalsContext();
+  const { showToast } = useToast();
+  const { scrapingFormValues: formValues, updateFormValues, insertCommand } = useActionModalsContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SCRAPE');
-    toast('Command inserted', { type: 'info' });
+    showToast({ message: 'Command Inserted' });
   };
 
   return (

@@ -1,7 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
-import { toast } from 'react-toastify';
+
+import useToast from './useToast';
+
 import { replaceWebSearchCommands } from '@/utils/scraperUtils';
 
 export interface IMessage {
@@ -15,6 +17,8 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
   const [messages, setMessages] = useState<IMessage[]>([] as IMessage[]);
   const [editingUuid, setEditingUuid] = useState<string | null>(null);
   const abortControllerRef = useRef<AbortController | null>(null);
+
+  const { showToast } = useToast();
 
   useEffect(() => {
     const savedMessages = sessionStorage.getItem('chatMessages');
@@ -56,9 +60,9 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     } catch (error) {
       if (axios.isCancel(error)) {
         console.error('Request canceled', error.message);
-        toast('Request canceled', { type: 'error' });
+        showToast({ message: 'Request canceled', variant: 'error' });
       } else {
-        toast('Error sending message', { type: 'error' });
+        showToast({ message: 'Error sending message', variant: 'error' });
         console.error('Error sending message:', error);
       }
     } finally {

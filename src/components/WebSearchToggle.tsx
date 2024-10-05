@@ -1,19 +1,21 @@
 import React from 'react';
-import { toast } from 'react-toastify';
 
 import { clsMerge } from '@/utils/classname-merge';
+import useToast from '@/hooks/useToast';
 
 import { useActionModalsContext } from '@/context/ActionModalsContext';
 import GlobeIcon from '@/assets/svg-icons/GlobeIcon';
 
 const WebSearchToggle = () => {
-  const { insertCommand, webSearchFormValues: formValues, updateFormValues } = useActionModalsContext();
   const [isAdvanced, setIsAdvanced] = React.useState(false);
+  
+  const { showToast } = useToast();
+  const { insertCommand, webSearchFormValues: formValues, updateFormValues } = useActionModalsContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
     insertCommand('WEB_SEARCH');
-    toast('Command inserted', { type: 'info' });
+    showToast({ message: 'Command Inserted' });
   };
 
   return (

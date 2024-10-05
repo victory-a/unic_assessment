@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata, Viewport } from 'next';
-import { toast } from 'react-toastify';
 
+import useToast from '@/hooks/useToast';
 import useFetchChat from '@/hooks/useFetchChat';
 import useScrapeUrl from '@/hooks/useScrapeUrl';
 import { removeHtmlTags } from '@/utils/scraperUtils';
@@ -27,6 +27,7 @@ export const viewport: Viewport = {
 
 export default function Home() {
   const { value, setValue, currentModal, closeModal, setCurrentModal } = useActionModalsContext();
+  const { showToast } = useToast();
 
   const { isLoading, messages, handleSend, handleEdit, handleStop } = useFetchChat({ setValue });
   const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: removeHtmlTags(value) });
@@ -39,7 +40,8 @@ export default function Home() {
 
         handleSend(removeHtmlTags(finalText));
       } catch (error) {
-        toast('Error during scraping process', { type: 'error' });
+        showToast({ message: 'Error during scraping process', variant: 'error' });
+
         console.error('Error during scraping process:', error);
       } finally {
         closeModal();
