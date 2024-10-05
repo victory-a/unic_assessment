@@ -13,7 +13,7 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ### Limitations & Trade-offs
 
-- **Character limit**: The LLM model enforces a character limit, so I truncate prompts for web scraping tasks.
+- **Max Character limit**: The LLM model enforces a character limit, so I truncate prompts for web scraping tasks.
 - **Rich text support**: The LLM does not natively handle rich text, so HTML tags are stripped before sending prompts to the model.
 
 ### Possible Improvements
