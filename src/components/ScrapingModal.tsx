@@ -13,8 +13,8 @@ interface IScrapingModal {
 
 const scrapingQueue = [
   { completed: true, title: 'Cyprus - Cyprus Mail', url: 'cyprus-mail.com', id: '1' },
-  { completed: false, title: 'Breaking News, Latest News', url: 'edition.cnn.com', id: '1' },
-  { completed: true, title: 'Cyprus News - Google Search', url: 'google.com', id: '1' },
+  { completed: false, title: 'Breaking News, Latest News', url: 'edition.cnn.com', id: '2' },
+  { completed: true, title: 'Cyprus News - Google Search', url: 'google.com', id: '3' },
 ];
 
 const ScrapingModal = ({ isOpen, onClose, isScraping }: IScrapingModal) => {

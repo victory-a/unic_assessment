@@ -40,3 +40,5 @@ export const replaceWebSearchCommands = (inputText: string, replacementText: str
 
   return inputText.replace(webSearchRegex, replacementText);
 };
+
+export const removeHtmlTags = (value: string) => value.replace(/<[^>]*>/g, '');
