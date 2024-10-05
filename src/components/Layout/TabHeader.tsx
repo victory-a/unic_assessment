@@ -22,6 +22,7 @@ const TabHeader = ({ tabs, activeTab = 3, setActiveTab }: ITabHeader) => {
 
         return (
           <button
+            key={`tab-${i}`}
             onClick={() => setActiveTab(tab.value)}
             className={clsMerge(
               'h-full px-4 text-sm font-semibold',

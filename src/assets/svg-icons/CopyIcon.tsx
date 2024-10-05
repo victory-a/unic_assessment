@@ -12,7 +12,7 @@ const CopyIcon = ({ className, height = 12, width = 13 }: IconProps) => {
       xmlns='http://www.w3.org/2000/svg'
       className={clsMerge(className)}
     >
-      <g clip-path='url(#clip0_1_126)'>
+      <g clipPath='url(#clip0_1_126)'>
         <path
           d='M7.25 10.5H2V5.25H3.5V3.75H2H0.5V5.25V10.5V12H2H7.25H8.75V10.5V9H7.25V10.5ZM12.5 8.25V0H4.25V8.25H12.5Z'
           fill='#E4E4E4'

@@ -15,7 +15,7 @@ const CloseIcon = ({ className, height = 30, width = 30 }: IconProps) => {
       <path
         d='M6.34315 6.34338L17.6569 17.6571M17.6569 6.34338L6.34315 17.6571'
         stroke='currentColor'
-        stroke-width='2'
+        strokeWidth='2'
         stroke-linecap='round'
         stroke-linejoin='round'
       ></path>
