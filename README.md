@@ -62,4 +62,4 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-<!-- Live [URL](https://github.com/victory-a/unic_assessment/) -->
+Live [URL](https://llm-wrapper-victory-asokomeh.vercel.app/)
