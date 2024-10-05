@@ -5,22 +5,24 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Features
 
 - WYSIWYG Editor
-- Markdown and Syntax Highlighting
-- Start, stop, and edit LLM Interaction
-- Insert special commands, ie: Web-scraping and web-search
+- Markdown rendering and syntax highlighting
+- Start, stop, and edit LLM interactions
+- Insert special commands (e.g., web scraping, web search)
 - Session persistence
-- Accessibility and Responsive design
+- Accessible and responsive design
 
-### Limitations - Tradeoffs
+### Limitations & Trade-offs
 
-- Character limit is enforced by the LLM model used: I truncated the prompt for webscraping tasks
-- LLM does not natively support rich text: I eliminate html tags from the prompt at the point of calling the llm
+- **Character limit**: The LLM model enforces a character limit, so I truncate prompts for web scraping tasks.
+- **Rich text support**: The LLM does not natively handle rich text, so HTML tags are stripped before sending prompts to the model.
 
 ### Possible Improvements
-- Implement a more robust state management a state management library
-- Possibly add authentication with social login
-- Persist history on a database
-- Add automated test
+
+- Implement a more robust state management solution (e.g., using a state management library)
+- Add social login for authentication
+- Persist chat history in a database
+- Implement automated testing
+
 
 ### Getting Started
 
