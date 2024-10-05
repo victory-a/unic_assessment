@@ -22,7 +22,7 @@ interface IIconButton {
 }
 const IconButton = ({ icon, onClick = () => {} }: IIconButton) => {
   return (
-    <button onClick={onClick} className='hover:bg-grey-400 h-9 rounded-md bg-foreground px-3'>
+    <button onClick={onClick} className='h-9 rounded-md bg-foreground px-3 hover:bg-grey-400'>
       {icon}
     </button>
   );
@@ -44,7 +44,7 @@ const ProfileBadge = ({ initials }: { initials: string }) => {
 const ListItem = ({ label, link }: { label: string; link: string }) => {
   return (
     <li>
-      <Link href={link} className='hover:bg-grey-400 rounded-[0.462rem] p-3 text-sm font-medium'>
+      <Link href={link} className='rounded-[0.462rem] p-3 text-sm font-medium hover:bg-grey-400'>
         {label}
       </Link>
     </li>
@@ -60,6 +60,9 @@ const Header = ({ onOpen }: { onOpen: () => void }) => {
         <header className='sticky h-[3.625rem] w-full border-b border-b-foreground lg:h-[7.5rem]'>
           <div className='flex h-[3.625rem] w-full items-center justify-between px-5'>
             <div>
+              <button onClick={onOpen} className='lg:hidden'>
+                <HamBurgerIcon />
+              </button>
             </div>
             <ul className='flex w-full max-w-[21.25rem] items-center justify-between'>
               <ListItem label='Dashboard' link='#!' />
@@ -80,7 +83,7 @@ const Header = ({ onOpen }: { onOpen: () => void }) => {
             </div>
             <TabHeader tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
             <div className='flex items-center justify-center gap-2.5'>
-              <button className='hover:bg-grey-400 mr-1.5 flex h-9 items-center gap-3 rounded-md bg-foreground px-3'>
+              <button className='mr-1.5 flex h-9 items-center gap-3 rounded-md bg-foreground px-3 hover:bg-grey-400'>
                 ChatGPT
                 <span>
                   <CaretDown />

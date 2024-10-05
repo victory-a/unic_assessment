@@ -27,7 +27,7 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     if (!input.trim()) return;
 
     setIsLoading(true);
-    const result = replaceWebSearchCommands(input, 'WEB-SEARCH_SUCCEEDED');
+    const result = replaceWebSearchCommands(input, ' WEB-SEARCH_SUCCEEDED');
     const message = { question: result, response: '', uuid: uuidv4() };
 
     abortControllerRef.current = new AbortController();

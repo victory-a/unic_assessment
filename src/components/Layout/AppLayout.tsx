@@ -20,7 +20,7 @@ const AppLayout = (props: PropsWithChildren) => {
   const { width } = useWindowSize();
 
   React.useEffect(() => {
-    if (width && width > 1024) {
+    if (width && width > 768) {
       setDisplayMobileSidebar(false); // automatically close mobile nav on large displays
     }
   }, [width]);
@@ -37,7 +37,7 @@ const AppLayout = (props: PropsWithChildren) => {
           'no-scrollbar flex h-[100dvh] w-[100dhv] flex-col overflow-y-auto md:flex-row md:overflow-x-hidden md:overflow-y-hidden',
         )}
       >
-        {width && width > 768 ? <SideBar /> : null}
+        {width && width > 1024 ? <SideBar /> : null}
         {displayMobileSidebar ? <MobileSidebar onClose={() => setDisplayMobileSidebar(false)} /> : null}
 
         <div className='w-full px-4'>

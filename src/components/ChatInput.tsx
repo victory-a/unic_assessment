@@ -27,7 +27,7 @@ const ChatInput = ({ openCommandsModal, handleSend, handleStop, isLoading }: ICh
 
   return (
     <div>
-      <div className='red-border input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
+      <div className='input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
         <Editor content={value} setContent={setValue} isLoading={isLoading} />
 
         <div className='mx-2 hidden items-center text-nowrap rounded-sm p-2 text-grey-700 disabled:opacity-40 sm:flex'>

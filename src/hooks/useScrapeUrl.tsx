@@ -56,7 +56,7 @@ const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
     // Replace placeholders with scraped content
     let finalText = modifiedText;
     placeholders.forEach((placeholderObj, index) => {
-      finalText = finalText.replace(placeholderObj.placeholder, scrapedResults[index]);
+      finalText = finalText.replace(placeholderObj.placeholder, ` ${scrapedResults[index]}`);
     });
 
     setIsScraping(false);
