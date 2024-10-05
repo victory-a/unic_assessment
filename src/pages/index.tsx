@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 
 import useFetchChat from '@/hooks/useFetchChat';
 import useScrapeUrl from '@/hooks/useScrapeUrl';
+import { removeHtmlTags } from '@/utils/scraperUtils';
 import { useActionModalsContext } from '@/context/ActionModalsContext';
 
 import ChatInput from '@/components/ChatInput';
@@ -11,7 +12,6 @@ import AppLayout from '@/components/Layout/AppLayout';
 import PersonaDisplay from '@/components/PersonaDisplay';
 import CommandsModal from '@/components/CommandsModal';
 import ScrapingModal from '@/components/ScrapingModal';
-
 import MessagesView from '@/components/MessagesView';
 
 export const metadata: Metadata = {
@@ -29,7 +29,7 @@ export default function Home() {
   const { value, setValue, currentModal, closeModal, setCurrentModal } = useActionModalsContext();
 
   const { isLoading, messages, handleSend, handleEdit, handleStop } = useFetchChat({ setValue });
-  const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: value });
+  const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: removeHtmlTags(value) });
 
   const handleSubmit = async () => {
     if (isScrapingNeeded) {
@@ -37,7 +37,7 @@ export default function Home() {
       try {
         const finalText = await scrapeUrls();
 
-        handleSend(finalText);
+        handleSend(removeHtmlTags(finalText));
       } catch (error) {
         toast('Error during scraping process', { type: 'error' });
         console.error('Error during scraping process:', error);
@@ -45,7 +45,7 @@ export default function Home() {
         closeModal();
       }
     } else {
-      handleSend(value);
+      handleSend(removeHtmlTags(value));
     }
   };
 
