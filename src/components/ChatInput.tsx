@@ -1,23 +1,25 @@
-import PaperPlaneIcon from '@/assets/svg-icons/PaperPlaneIcon';
 import React from 'react';
+import { useActionModalsContext } from '@/context/ActionModalsContext';
 import ActionButton from './ActionButton';
-import CommandIcon from '@/assets/svg-icons/CommandIcon';
-import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
+import Spinner from './Spinner';
+
 import UserIcon from '@/assets/svg-icons/UserIcon';
 import PlusIcon from '@/assets/svg-icons/PlusIcon';
+import QuoteIcon from '@/assets/svg-icons/QuoteIcon';
+import CommandIcon from '@/assets/svg-icons/CommandIcon';
+import PaperPlaneIcon from '@/assets/svg-icons/PaperPlaneIcon';
 import { HalfCircularProgress } from '@/assets/svg-icons/ProgressIcon';
-import Spinner from './Spinner';
 
 interface IChatInput {
   openCommandsModal: () => void;
-  value: string;
-  setValue: (val: string) => void;
   handleSend: () => void;
   handleStop: () => void;
   isLoading: boolean;
 }
 
-const ChatInput = ({ openCommandsModal, value, setValue, handleSend, handleStop, isLoading }: IChatInput) => {
+const ChatInput = ({ openCommandsModal, handleSend, handleStop, isLoading }: IChatInput) => {
+  const { value, setValue } = useActionModalsContext();
+
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const adjustHeight = () => {
@@ -50,6 +52,7 @@ const ChatInput = ({ openCommandsModal, value, setValue, handleSend, handleStop,
     <div>
       <div className='input mb-4 flex w-full items-center rounded-md border border-foreground bg-background px-5'>
         <textarea
+          autoFocus
           rows={3}
           ref={textareaRef}
           className='no-scrollbar mt-3 min-h-9 w-full resize-none overflow-y-hidden rounded-md bg-background leading-relaxed outline-none placeholder:text-sm placeholder:text-grey-600'

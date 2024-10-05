@@ -4,28 +4,15 @@ import Dialog from '@/components/Dialog';
 import URLScrapeToggle from './UrlScrapeToggle';
 import WebSearchToggle from './WebSearchToggle';
 
-import { IActionModalsContextType } from '@/context/ActionModalsContext';
-
 import CommandIcon from '@/assets/svg-icons/CommandIcon';
 import CancelIcon from '@/assets/svg-icons/CancelIcon';
 
 interface ICommandsModal {
   isOpen: boolean;
   onClose: () => void;
-  scrapingFormValues: IActionModalsContextType['scrapingFormValues'];
-  webSearchFormValues: IActionModalsContextType['webSearchFormValues'];
-  updateFormValues: IActionModalsContextType['updateFormValues'];
-  resetFormValues: IActionModalsContextType['resetFormValues'];
 }
 
-const CommandsModal = ({
-  isOpen,
-  onClose,
-  resetFormValues,
-  updateFormValues,
-  scrapingFormValues,
-  webSearchFormValues,
-}: ICommandsModal) => {
+const CommandsModal = ({ isOpen, onClose }: ICommandsModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className='w-full min-w-[350px] rounded-md bg-foreground sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>
@@ -42,16 +29,8 @@ const CommandsModal = ({
           </button>
         </div>
         <div className='flex flex-col gap-2 p-4'>
-          <WebSearchToggle
-            updateFormValues={updateFormValues}
-            formValues={webSearchFormValues}
-            resetFormValues={resetFormValues}
-          />
-          <URLScrapeToggle
-            updateFormValues={updateFormValues}
-            formValues={scrapingFormValues}
-            resetFormValues={resetFormValues}
-          />
+          <WebSearchToggle />
+          <URLScrapeToggle />
         </div>
       </div>
     </Dialog>

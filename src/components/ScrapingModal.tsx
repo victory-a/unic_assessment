@@ -9,8 +9,6 @@ import { defaultValues } from '@/context/ActionModalsContext';
 interface IScrapingModal {
   isOpen: boolean;
   onClose: () => void;
-  count?: number;
-  total?: number;
   handleCancelAll: () => void;
 }
 
@@ -21,7 +19,7 @@ const scrapingQueue = [
   { completed: true, title: 'Cyprus News - Google Search', url: 'google.com', id: '1' },
 ];
 
-const ScrapingModal = ({ isOpen, onClose, count = 8, total = 10, handleCancelAll }: IScrapingModal) => {
+const ScrapingModal = ({ isOpen, onClose, handleCancelAll }: IScrapingModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className='relative w-full min-w-[350px] rounded-md rounded-t-md bg-foreground bg-grey-1000 pt-2 sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>
@@ -53,9 +51,7 @@ const ScrapingModal = ({ isOpen, onClose, count = 8, total = 10, handleCancelAll
             </button>
             <p className='text-sm text-grey-900'>Cancel All</p>
           </div>
-          <p className='text-xs text-grey-1100'>
-            Searching {count} of {total}
-          </p>
+          <p className='text-xs text-grey-1100'>Searching 8 of 10</p>
         </div>
       </div>
     </Dialog>

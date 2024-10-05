@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export default function Home() {
-  const [value, setValue] = React.useState('');
+  const { value, setValue, currentModal, closeModal, setCurrentModal, cancelAll } = useActionModalsContext();
 
   const { isLoading, messages, handleSend, handleEdit, handleStop } = useFetchChat({ setValue });
   const { isScrapingNeeded, scrapeUrls, isScraping } = useScrapeUrl({ inputText: value });
@@ -46,29 +46,12 @@ export default function Home() {
     }
   };
 
-  const {
-    currentModal,
-    closeModal,
-    setCurrentModal,
-    cancelAll,
-    scrapingFormValues,
-    webSearchFormValues,
-    updateFormValues,
-    resetFormValues,
-  } = useActionModalsContext();
-
   const isCommandsModalOpen = currentModal === 'INSERT_COMMAND';
   const isScrapingModalOpen = currentModal === 'SEARCH_AND_SCRAPE';
 
   return (
     <>
-      {isCommandsModalOpen ? (
-        <CommandsModal
-          isOpen={isCommandsModalOpen}
-          onClose={closeModal}
-          {...{ updateFormValues, scrapingFormValues, webSearchFormValues, resetFormValues }}
-        />
-      ) : null}
+      {isCommandsModalOpen ? <CommandsModal isOpen={isCommandsModalOpen} onClose={closeModal} /> : null}
       {isScrapingModalOpen ? (
         <ScrapingModal isOpen={isScraping} onClose={closeModal} handleCancelAll={cancelAll} />
       ) : null}
@@ -81,8 +64,6 @@ export default function Home() {
         <div className='fixed bottom-0 w-full bg-background lg:max-w-[60rem]'>
           <ChatInput
             openCommandsModal={() => setCurrentModal('INSERT_COMMAND')}
-            value={value}
-            setValue={setValue}
             handleSend={handleSubmit}
             handleStop={handleStop}
             isLoading={isLoading}

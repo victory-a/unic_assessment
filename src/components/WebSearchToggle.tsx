@@ -1,24 +1,19 @@
 import React from 'react';
-import { clsMerge } from '@/utils/classname-merge';
 import { toast } from 'react-toastify';
 
-import { IActionModalsContextType } from '@/context/ActionModalsContext';
+import { clsMerge } from '@/utils/classname-merge';
+
+import { useActionModalsContext } from '@/context/ActionModalsContext';
 import GlobeIcon from '@/assets/svg-icons/GlobeIcon';
 
-interface IWebSearchToggle {
-  updateFormValues: IActionModalsContextType['updateFormValues'];
-  formValues: IActionModalsContextType['webSearchFormValues'];
-  resetFormValues: IActionModalsContextType['resetFormValues'];
-}
-
-const WebSearchToggle = ({ formValues, updateFormValues, resetFormValues }: IWebSearchToggle) => {
+const WebSearchToggle = () => {
+  const { insertCommand, webSearchFormValues: formValues, updateFormValues } = useActionModalsContext();
   const [isAdvanced, setIsAdvanced] = React.useState(false);
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-
+    insertCommand('WEB_SEARCH');
     toast('URL inserted', { type: 'success' });
-    resetFormValues('WEB_SEARCH');
   };
 
   return (
@@ -53,7 +48,7 @@ const WebSearchToggle = ({ formValues, updateFormValues, resetFormValues }: IWeb
             </button>
           </div>
         </div>
-        
+
         {isAdvanced ? (
           <div className='mt-2 flex gap-4'>
             <label htmlFor='max_execution_time' className='text-sm'>

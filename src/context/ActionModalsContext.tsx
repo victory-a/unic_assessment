@@ -11,13 +11,16 @@ type IModals = 'INSERT_COMMAND' | 'SEARCH_AND_SCRAPE' | null;
 type IForm = 'WEB_SCRAPE' | 'WEB_SEARCH';
 
 export interface IActionModalsContextType {
+  value: string;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+  insertCommand: (type: IForm) => void;
   cancelAll: () => void;
   closeModal: () => void;
   currentModal: IModals;
   setCurrentModal: (val: IModals) => void;
-  resetFormValues: (val: IForm) => void;
   scrapingFormValues: typeof defaultValues;
   webSearchFormValues: typeof defaultValues;
+  textareaRef: React.RefObject<HTMLTextAreaElement>;
   updateFormValues: ({ form, values }: { form: IForm; values: Partial<typeof defaultValues> }) => void;
 }
 
@@ -25,6 +28,9 @@ const context = React.createContext<IActionModalsContextType | undefined>(undefi
 
 const ActionModalsContext = (props: PropsWithChildren) => {
   const Provider = context.Provider;
+  const [value, setValue] = React.useState('');
+
+  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
   const [currentModal, setCurrentModal] = React.useState<IModals>(null);
 
@@ -39,19 +45,39 @@ const ActionModalsContext = (props: PropsWithChildren) => {
     }
   }
 
-  function resetFormValues(modal: 'WEB_SCRAPE' | 'WEB_SEARCH') {
-    if (modal === 'WEB_SCRAPE') {
-      setScrapingFormValues(defaultValues);
-    } else {
-      setWebSearchFormValues(defaultValues);
+  const closeModal = () => setCurrentModal(null);
+
+  function insertCommand(type: IForm) {
+    switch (type) {
+      case 'WEB_SCRAPE': {
+        const { filter, max_execution_time, store, url } = scrapingFormValues;
+
+        const command = `[include-url: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
+        setScrapingFormValues(defaultValues);
+        setValue(`${value} ${command}`);
+        closeModal();
+        break;
+      }
+
+      case 'WEB_SEARCH':
+        const { filter, max_execution_time, store, url } = webSearchFormValues;
+
+        const command = `[web-crawling: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
+        setWebSearchFormValues(defaultValues);
+        setValue(`${value} ${command}`);
+        closeModal()
+        break;
+
+      default:
+        return value;
     }
   }
 
-  const closeModal = () => setCurrentModal(null);
+  const cancelAll = () => {}; //////////////
 
-  const cancelAll = () => {};
-
-  const value: IActionModalsContextType = {
+  const returnValue: IActionModalsContextType = {
+    value,
+    setValue,
     cancelAll,
     closeModal,
     currentModal,
@@ -59,10 +85,11 @@ const ActionModalsContext = (props: PropsWithChildren) => {
     scrapingFormValues,
     updateFormValues,
     webSearchFormValues,
-    resetFormValues,
+    insertCommand,
+    textareaRef,
   };
 
-  return <Provider value={value} {...props} />;
+  return <Provider value={returnValue} {...props} />;
 };
 
 export default ActionModalsContext;

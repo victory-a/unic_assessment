@@ -1,24 +1,21 @@
 import React from 'react';
-import { clsMerge } from '@/utils/classname-merge';
 import { toast } from 'react-toastify';
 
-import { IActionModalsContextType } from '@/context/ActionModalsContext';
+import { clsMerge } from '@/utils/classname-merge';
+import { useActionModalsContext } from '@/context/ActionModalsContext';
+
 import LinkShareIcon from '@/assets/svg-icons/LinkShareIcon';
 
-interface IURLScrapeToggle {
-  updateFormValues: IActionModalsContextType['updateFormValues'];
-  formValues: IActionModalsContextType['scrapingFormValues'];
-  resetFormValues: IActionModalsContextType['resetFormValues'];
-}
-
-const URLScrapeToggle = ({ updateFormValues, formValues, resetFormValues }: IURLScrapeToggle) => {
+const URLScrapeToggle = () => {
+  const { scrapingFormValues: formValues, updateFormValues } = useActionModalsContext();
   const [isAdvanced, setIsAdvanced] = React.useState(false);
+
+  const { insertCommand } = useActionModalsContext();
 
   const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-
+    insertCommand('WEB_SCRAPE');
     toast('URL inserted', { type: 'success' });
-    resetFormValues('WEB_SCRAPE');
   };
 
   return (
