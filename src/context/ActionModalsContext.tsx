@@ -54,17 +54,15 @@ const ActionModalsContext = (props: PropsWithChildren) => {
         const command = `[include-url: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
         setScrapingFormValues(defaultValues);
         setValue(`${value} ${command}`);
-        closeModal();
         break;
       }
 
       case 'WEB_SEARCH':
         const { filter, max_execution_time, store, url } = webSearchFormValues;
 
-        const command = `[web-crawling: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
+        const command = `[web-search: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
         setWebSearchFormValues(defaultValues);
         setValue(`${value} ${command}`);
-        closeModal();
         break;
 
       default:

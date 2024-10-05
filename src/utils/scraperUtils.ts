@@ -33,3 +33,10 @@ export const replaceCommandsWithPlaceholders = (
 export const truncateContent = (content: string, limit: number): string => {
   return content.length > limit ? content.slice(0, limit) + '...' : content;
 };
+
+export const replaceWebSearchCommands = (inputText: string, replacementText: string) => {
+  const webSearchRegex =
+    /\[web-search:\s*([^\]]+?)\s*max_execution_time:\d+\s*filter:(true|false)\s*store:(true|false)\]/g;
+
+  return inputText.replace(webSearchRegex, replacementText);
+};

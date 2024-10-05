@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
+import { replaceWebSearchCommands } from '@/utils/scraperUtils';
 
 export interface IMessage {
   question: string;
@@ -26,11 +27,12 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     if (!input.trim()) return;
 
     setIsLoading(true);
-    const message = { question: input, response: '', uuid: uuidv4() };
+    const result = replaceWebSearchCommands(input, 'WEB-SEARCH_SUCCEEDED');
+    const message = { question: result, response: '', uuid: uuidv4() };
 
     abortControllerRef.current = new AbortController();
     const payload = {
-      messages: [{ role: 'user', content: input }],
+      messages: [{ role: 'user', content: result }],
     };
 
     try {

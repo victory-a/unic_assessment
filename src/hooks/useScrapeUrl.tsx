@@ -14,12 +14,12 @@ interface IUseScrapeUrl {
   maxChar?: number;
 }
 
-const useScrapeUrl = ({ inputText,  maxChar = 500 }: IUseScrapeUrl) => {
+const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
   const [isScraping, setIsScraping] = useState(false);
   const [scrapeError, setScrapeError] = useState<string>('');
 
   const urlSIncluded = checkIncludeUrlCommands(inputText); // Check if there are include-url commands
-  
+
   const isScrapingNeeded = urlSIncluded.length > 0;
 
   const scrapeUrls = useCallback(async () => {
