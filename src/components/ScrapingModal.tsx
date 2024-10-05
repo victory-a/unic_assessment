@@ -17,7 +17,7 @@ const scrapingQueue = [
   { completed: true, title: 'Cyprus News - Google Search', url: 'google.com', id: '3' },
 ];
 
-const ScrapingModal = ({ isOpen, onClose, isScraping }: IScrapingModal) => {
+const ScrapingModal = ({ isOpen, onClose }: IScrapingModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className='relative w-full min-w-[350px] rounded-md rounded-t-md bg-foreground bg-grey-1000 pt-2 sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>

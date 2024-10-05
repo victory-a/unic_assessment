@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSnackbar, OptionsObject } from 'notistack';
 
 interface ToastOptions {
