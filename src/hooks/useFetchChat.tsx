@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from 'react-toastify';
+import { replaceWebSearchCommands } from '@/utils/scraperUtils';
 
 export interface IMessage {
   question: string;
@@ -16,7 +17,7 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    const savedMessages = localStorage.getItem('chatMessages');
+    const savedMessages = sessionStorage.getItem('chatMessages');
     if (savedMessages) {
       setMessages(JSON.parse(savedMessages));
     }
@@ -26,11 +27,12 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     if (!input.trim()) return;
 
     setIsLoading(true);
-    const message = { question: input, response: '', uuid: uuidv4() };
+    const result = replaceWebSearchCommands(input, 'WEB-SEARCH_SUCCEEDED');
+    const message = { question: result, response: '', uuid: uuidv4() };
 
     abortControllerRef.current = new AbortController();
     const payload = {
-      messages: [{ role: 'user', content: input }],
+      messages: [{ role: 'user', content: result }],
     };
 
     try {
@@ -43,7 +45,7 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
       setMessages((prevMessages) => {
         const updatedMessages = [...prevMessages, data];
 
-        localStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
+        sessionStorage.setItem('chatMessages', JSON.stringify(updatedMessages));
         return updatedMessages;
       });
 
@@ -77,7 +79,6 @@ const useFetchChat = ({ setValue }: { setValue: (val: string) => void }) => {
     if (abortControllerRef.current) {
       abortControllerRef.current.abort('Request was canceled by the user.');
       console.error('Request has been stopped.');
-      setValue('');
       setIsLoading(false);
       abortControllerRef.current = null;
     }

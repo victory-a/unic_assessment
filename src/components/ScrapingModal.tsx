@@ -4,22 +4,20 @@ import { clsMerge } from '@/utils/classname-merge';
 import Dialog from '@/components/Dialog';
 import CancelIcon, { CancelIconOutline } from '@/assets/svg-icons/CancelIcon';
 import CompleteIcon from '@/assets/svg-icons/CompleteIcon';
-import { defaultValues } from '@/context/ActionModalsContext';
 
 interface IScrapingModal {
   isOpen: boolean;
   onClose: () => void;
-  handleCancelAll: () => void;
+  isScraping: boolean;
 }
 
 const scrapingQueue = [
   { completed: true, title: 'Cyprus - Cyprus Mail', url: 'cyprus-mail.com', id: '1' },
-  { completed: false, title: 'Cyprus Mail', url: 'cyprus-mail.com', id: '1' },
   { completed: false, title: 'Breaking News, Latest News', url: 'edition.cnn.com', id: '1' },
   { completed: true, title: 'Cyprus News - Google Search', url: 'google.com', id: '1' },
 ];
 
-const ScrapingModal = ({ isOpen, onClose, handleCancelAll }: IScrapingModal) => {
+const ScrapingModal = ({ isOpen, onClose, isScraping }: IScrapingModal) => {
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className='relative w-full min-w-[350px] rounded-md rounded-t-md bg-foreground bg-grey-1000 pt-2 sm:min-w-[500px] lg:w-[90%] lg:max-w-[35.75rem]'>
@@ -43,10 +41,7 @@ const ScrapingModal = ({ isOpen, onClose, handleCancelAll }: IScrapingModal) => 
         </div>
         <div className='flex items-center justify-between rounded-b-md bg-grey-200 px-6 py-3.5'>
           <div className='flex items-center'>
-            <button
-              onClick={handleCancelAll}
-              className='relative mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-foreground hover:bg-grey-700'
-            >
+            <button className='relative mr-2 flex h-7 w-7 items-center justify-center rounded-full bg-foreground hover:bg-grey-700'>
               <CancelIcon />
             </button>
             <p className='text-sm text-grey-900'>Cancel All</p>

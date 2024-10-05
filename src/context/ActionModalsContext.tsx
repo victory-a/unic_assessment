@@ -14,7 +14,6 @@ export interface IActionModalsContextType {
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
   insertCommand: (type: IForm) => void;
-  cancelAll: () => void;
   closeModal: () => void;
   currentModal: IModals;
   setCurrentModal: (val: IModals) => void;
@@ -55,17 +54,15 @@ const ActionModalsContext = (props: PropsWithChildren) => {
         const command = `[include-url: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
         setScrapingFormValues(defaultValues);
         setValue(`${value} ${command}`);
-        closeModal();
         break;
       }
 
       case 'WEB_SEARCH':
         const { filter, max_execution_time, store, url } = webSearchFormValues;
 
-        const command = `[web-crawling: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
+        const command = `[web-search: ${url} max_execution_time:${max_execution_time} filter:${filter} store:${store}]`;
         setWebSearchFormValues(defaultValues);
         setValue(`${value} ${command}`);
-        closeModal()
         break;
 
       default:
@@ -73,12 +70,9 @@ const ActionModalsContext = (props: PropsWithChildren) => {
     }
   }
 
-  const cancelAll = () => {}; //////////////
-
   const returnValue: IActionModalsContextType = {
     value,
     setValue,
-    cancelAll,
     closeModal,
     currentModal,
     setCurrentModal,

@@ -19,6 +19,7 @@ const useScrapeUrl = ({ inputText, maxChar = 500 }: IUseScrapeUrl) => {
   const [scrapeError, setScrapeError] = useState<string>('');
 
   const urlSIncluded = checkIncludeUrlCommands(inputText); // Check if there are include-url commands
+
   const isScrapingNeeded = urlSIncluded.length > 0;
 
   const scrapeUrls = useCallback(async () => {
