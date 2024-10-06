@@ -8,7 +8,7 @@ interface IDimensions {
 export default function useWindowSize(): IDimensions {
   const [dimensions, setDimensions] = React.useState<IDimensions>({ width: undefined, height: undefined });
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const resizeFunc = () => {
       setDimensions({ width: window.innerWidth, height: window.innerHeight });
     };
