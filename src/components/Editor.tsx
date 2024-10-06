@@ -10,10 +10,10 @@ interface IEditor {
   setContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Editor = ({ content, setContent }: IEditor) => {
+const Editor = ({ content, setContent, isLoading }: IEditor) => {
   return (
     <div className='w-full'>
-      <ReactQuill value={content} onChange={setContent} />
+      <ReactQuill value={content} onChange={setContent} readOnly={isLoading} />
     </div>
   );
 };
