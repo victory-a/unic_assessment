@@ -1,3 +1,4 @@
+'use client'
 import React, { PropsWithChildren } from 'react';
 import { Inter } from 'next/font/google';
 import { clsMerge } from '@/utils/classname-merge';
