@@ -45,7 +45,11 @@ const WebSearchToggle = () => {
             >
               Advanced
             </button>
-            <button type='submit' className='rounded-lg bg-foreground px-2 py-1.5 text-sm font-medium'>
+            <button
+              type='submit'
+              disabled={!formValues.url}
+              className='rounded-lg bg-foreground px-2 py-1.5 text-sm font-medium disabled:cursor-not-allowed'
+            >
               Insert
             </button>
           </div>
@@ -53,7 +57,7 @@ const WebSearchToggle = () => {
 
         {isAdvanced ? (
           <div className='mt-2 flex gap-4'>
-            <label htmlFor='max_execution_time' className='text-sm'>
+            <label htmlFor='web_search_max_execution_time' className='text-sm'>
               Max_execution_time:
               <input
                 value={formValues.max_execution_time}
@@ -62,15 +66,15 @@ const WebSearchToggle = () => {
                 }
                 type='number'
                 min={0}
-                id='max_execution_time'
+                id='web_search_max_execution_time'
                 className='ml-2 w-12 rounded-sm bg-foreground pl-2'
               />
             </label>
 
-            <label htmlFor='filter' className='flex items-center text-sm'>
+            <label htmlFor='web_search_filter' className='flex items-center text-sm'>
               Filter
               <input
-                id='filter'
+                id='web_search_filter'
                 type='checkbox'
                 checked={formValues.filter}
                 onChange={(e) => updateFormValues({ form: 'WEB_SEARCH', values: { filter: e.target.checked } })}
@@ -78,10 +82,10 @@ const WebSearchToggle = () => {
               />
             </label>
 
-            <label htmlFor='store' className='flex items-center text-sm'>
+            <label htmlFor='web_search_store' className='flex items-center text-sm'>
               Store
               <input
-                id='store'
+                id='web_search_store'
                 type='checkbox'
                 checked={formValues.store}
                 onChange={(e) => updateFormValues({ form: 'WEB_SEARCH', values: { store: e.target.checked } })}

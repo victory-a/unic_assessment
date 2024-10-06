@@ -46,7 +46,11 @@ const URLScrapeToggle = () => {
             >
               Advanced
             </button>
-            <button type='submit' className='rounded-lg bg-foreground px-2 py-1.5 text-sm font-medium'>
+            <button
+              type='submit'
+              disabled={!formValues.url}
+              className='rounded-lg bg-foreground px-2 py-1.5 text-sm font-medium disabled:cursor-not-allowed'
+            >
               Insert
             </button>
           </div>
@@ -54,7 +58,7 @@ const URLScrapeToggle = () => {
 
         {isAdvanced ? (
           <div className='mt-2 flex gap-4'>
-            <label htmlFor='max_execution_time' className='text-sm'>
+            <label htmlFor='url_scrape_max_execution_time' className='text-sm'>
               Max_execution_time:
               <input
                 value={formValues.max_execution_time}
@@ -63,15 +67,15 @@ const URLScrapeToggle = () => {
                 }
                 type='number'
                 min={0}
-                id='max_execution_time'
+                id='url_scrape_max_execution_time'
                 className='ml-2 w-12 rounded-sm bg-foreground pl-2'
               />
             </label>
 
-            <label htmlFor='filter' className='flex items-center text-sm'>
+            <label htmlFor='url_scrape_filter' className='flex items-center text-sm'>
               Filter
               <input
-                id='filter'
+                id='url_scrape_filter'
                 type='checkbox'
                 checked={formValues.filter}
                 onChange={(e) => updateFormValues({ form: 'WEB_SCRAPE', values: { filter: e.target.checked } })}
@@ -79,10 +83,10 @@ const URLScrapeToggle = () => {
               />
             </label>
 
-            <label htmlFor='store' className='flex items-center text-sm'>
+            <label htmlFor='url_scrape_store' className='flex items-center text-sm'>
               Store
               <input
-                id='store'
+                id='url_scrape_store'
                 type='checkbox'
                 checked={formValues.store}
                 onChange={(e) => updateFormValues({ form: 'WEB_SCRAPE', values: { store: e.target.checked } })}
